@@ -1,0 +1,84 @@
+<?php  
+    $request = Zend_Controller_Front::getInstance()->getRequest();
+    $resource = $request->getControllerName();
+    $action  = $request->getActionName();
+
+    $version = Zend_Registry::get('version');
+?>
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="ie ie8"> <![endif]-->
+<!--[if IE 9]><html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html lang="<?php echo DEFAULT_LANG_ABBR ?>">
+<!--<![endif]-->
+
+    <head>
+        <!-- metas -->
+        <?php Zend_Registry::get('hooks')->trigger('view_head', $this); ?>
+        <!-- end metas -->
+
+        <?php 
+            echo $this->render("statics/header-scripts.phtml");
+            echo $this->headLink();
+            echo $this->headScript();
+            echo $this->render('partial/phpjs.phtml'); 
+            echo $this->render('statics/favicon.phtml'); 
+        ?>
+
+        <?php if ($resource == "contact"): ?>
+            <?php 
+                $langAbbr = Application_Model_Language::getAbbr(DEFAULT_LANG_ID) ;
+            ?>
+            <script src="https://www.google.com/recaptcha/api.js?explicit&hl=<?php echo $langAbbr ?>" async defer></script>
+        <?php endif ?>
+        
+    </head>
+
+    <body class="front-page no-sidebar site-layout-full-width header-style-5 menu-has-search menu-has-cart header-sticky">
+      <div id="wrapper" class="animsition">
+        <div id="page" class="clearfix">
+          <?php 
+            echo $this->render("statics/header.phtml");
+            echo $this->layout()->content;
+            echo $this->render("statics/footer.phtml");
+          ?>
+        </div>
+      </div>
+      
+      <a id="scroll-top"></a>
+
+        <?php
+            echo $this->render("statics/inline-scripts.phtml");
+            echo $this->inlineScript();
+        ?>
+
+        <!-- share this -->
+        <?php if ($resource == "products" AND $action == "fiche"): ?>
+          <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=609a297e18d187001189f0a2&product=sop' async='async'></script>
+        <?php endif ?>
+
+        <!-- https://medium.com/@jamesfuthey/how-to-add-facebook-live-chat-to-your-website-dd48fc8bb066 -->
+        <?php /* ?>
+        <div class="fb-customerchat" page_id="<?php echo FACEBOOK_PAGE_ID ?>" minimized="true" ></div>
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId            : '<?php echo FACEBOOK_APP_ID ?>',
+              autoLogAppEvents : true,
+              xfbml            : true,
+              version          : 'v2.11'
+            });
+          };
+        (function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "https://connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+           }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <?php */ ?>
+
+    </body>
+</html>

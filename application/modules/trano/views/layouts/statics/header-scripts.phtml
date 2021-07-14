@@ -1,0 +1,51 @@
+<?php 
+	$request = Zend_Controller_Front::getInstance()->getRequest();
+	$resource = $request->getControllerName();
+	$action  = $request->getActionName();
+
+    $version = Zend_Registry::get('version');
+?>
+
+
+<link href="<?php echo THEMES_TRANO_URL ?>css/main.css" rel="stylesheet" type="text/css" />
+<!--[if IE]> <link href="<?php echo THEMES_TRANO_URL ?>css/ie.css" rel="stylesheet" type="text/css"> <![endif]-->
+<link href="<?php echo THEMES_TRANO_URL ?>css/plugins.css" rel="stylesheet" type="text/css" />
+
+<!-- datatables -->
+<link href="<?php echo THEMES_TRANO_URL ?>js/plugins/tables/datatables.css" rel="stylesheet" type="text/css" />
+
+<!-- custom -->
+<link rel="stylesheet" href="<?php echo THEMES_TRANO_URL ?>css/app.css?v=<?php echo $version ;?>"/>
+<link rel="stylesheet" href="<?php echo THEMES_TRANO_URL ?>css/spacing-and-height.css"/>
+
+<link rel="stylesheet" href="<?php echo PLUGINS_URL ; ?>jquery.growl/css/jquery.growl.css"/>
+
+<link rel="stylesheet" href="<?php echo PLUGINS_URL ; ?>ladda/css/ladda.min.css"/>
+
+<!-- datepicker -->
+<link rel='stylesheet' href='<?php echo PLUGINS_URL; ?>bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css?v=<?php echo $version?>' type='text/css' media='all' />
+
+<link rel='stylesheet' href='<?php echo PLUGINS_URL; ?>magnific-popup/dist/magnific-popup.css' type='text/css' media='all' />
+
+<!-- sweet alert -->
+<?php /* ?><link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal/sweetalert.css?v=<?php echo $version?>">
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal/themes/google/google.css?v=<?php echo $version?>">
+ <?php */ ?>
+
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal2/sweetalert2.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal2/themes/wordpress-admin/wordpress-admin.min.css">
+<?php /* ?><link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal2/themes/bootstrap-4/bootstrap-4.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal2/themes/borderless/borderless.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal2/themes/bulma/bulma.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal2/themes/dark/dark.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal2/themes/default/default.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal2/themes/material-ui/material-ui.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>swal2/themes/minimal/minimal.css">
+<?php */ ?>
+
+
+<!-- toastr -->
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>toastr/2.1.3/toastr.min.css">
+
+<!-- fancy -->
+<link rel="stylesheet" type="text/css" href="<?php echo PLUGINS_URL ?>fancybox/jquery.fancybox.min.css">

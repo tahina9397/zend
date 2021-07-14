@@ -1,0 +1,77 @@
+<!-- Main content -->
+<?php 
+  $id_product =  Zend_Controller_Front::getInstance()->getRequest()->getParam('id_product');
+ 
+  $sQuery = "
+    SELECT 
+      cm.title
+    FROM ".TABLE_PREFIX."categories c
+    LEFT JOIN ".TABLE_PREFIX."categories_multilingual cm ON c.id=cm.id_category
+    WHERE c.id = :id_product
+  ";
+
+  $rResult = Application_Model_Global::pqueryRow($sQuery,array(":id_product" => $id_product));
+?>
+
+<style type="text/css">
+    #dropzone-example { background: url(<?php echo THEMES_TRANO_URL ?>/images/elements/uploader/drag.png) no-repeat 50%;background-color: #fff;}
+</style>
+
+<div class="content">
+    <h3 class="text-light"><?php echo str_replace("#title#", $rResult["title"], "Lots pour #title#") ?></h3>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+            <div class="row-fluid">
+                <div class="span4">
+                    <div class="notice outer">
+                        <div class="note note-danger">
+                            <strong>
+                                <?php 
+                                    echo str_replace("#size#", "<strong>".MAX_SIZE."".DEFAULT_UNIT_LIBELLE."</strong>", "Un fichier ne doit pas dépasser #size# ");
+                                    echo "<br>";
+                                    echo str_replace("#type#", "<strong>PDF</strong>", "Seul le fichier de type  #type# est autorisé") ;
+                                    echo "<br>";
+                                ?>
+                            </strong>
+                        </div>
+                    </div>
+                    <form action="<?php echo $this->baseUrl() ?>/lots/multipleupload/?folder=lots&id_product=<?php echo $id_product ?>" class="dropzone dz-square" id="dropzone-example" style="width:100%;">
+                        <div class="dz-message" data-dz-message style="margin-top: 38px">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="span8">
+                    <!-- Default datatable -->
+                    <div class="outer">
+                        <div class=" align-cener">
+                            <a href="javascript:void(0)" class="btn btn-danger massdelete" data-resource_type="products_lots" title="Supprimer"><i class="font-trash"></i>Supprimer</a>
+                        </div>
+                        <div class="panel mt-10px">
+                           <div class="well">
+                               <table class="table table-condensed" id="data-table" data-id_product="<?php echo $id_product ?>">
+                                   <thead>
+                                       <tr>
+                                           <th width="2%"><input type="checkbox" id="checkAll" name="checkAll" class="styled" /></th>
+                                           <th>Nom du fichier</th>
+                                           <th width="20%">Date de création</th>
+                                           <th class="acenter" width="10%">Actions</th>
+                                       </tr>
+                                   </thead>
+
+                                   <tbody>
+                                       <tr>
+                                           <td colspan="4" class="text-center">Chargement des données</td>
+                                       </tr>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+                    <!-- /default datatable -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

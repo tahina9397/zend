@@ -1,0 +1,47 @@
+<!-- Main content -->
+<?php 
+    $id =  Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
+    $new = Application_Model_Page::getPageByPageId($id) ;
+?>
+
+<style type="text/css">
+    div.content > p{color:#fff;}
+</style>
+
+<div class="content">
+    <h3 class="text-light"><?php echo $new["title"] ?></h3>
+    <p><?php echo $new["text"] ?></p>
+
+    <div class="outer">
+        <div class=" align-cener">
+            <a href="javascript:void(0)" class="btn btn-danger massdelete" data-resource_type="news_comments" title="Supprimer"><i class="font-trash"></i>Supprimer</a>
+        </div>
+    </div>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+            <div class="well" >
+                <table class="table table-condensed" id="data-table" data-resource_id="<?php echo $id ?>">
+                    <thead>
+                        <tr>
+                            <th width="2%"><input type="checkbox" id="checkAll" name="checkAll" class="styled" /></th>
+                            <th>Auteur</th>
+                            <th>Courriel</th>
+                            <th width="15%">Commentaire</th>
+                            <th width="15%">Date création</th>
+                            <th>Archive</th>
+                            <th class="acenter" width="10%">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="7" class="text-center">Chargement des données</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /main content -->

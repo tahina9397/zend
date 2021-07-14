@@ -1,0 +1,68 @@
+<?php  
+  $get = Application_Model_Page::getPageByCatId(3) ;
+  $news = $get["content"] ;
+
+  array_multisort(array_column($news, 'create_date'), SORT_DESC, $news);
+?>
+
+<!--News Section-->
+<section class="news-section">
+  <div class="auto-container">
+      <!--Sec Title-->
+        <div class="sec-title centered aos-init aos-animate" data-aos="fade-up" data-aos-duration="700">
+            <h2><?php echo $this->translate("Actualités") ?></h2>
+        </div>
+        <div class="row clearfix">
+            
+          <?php if (!empty($news)): ?>
+            <!--News Style One-->
+            <?php foreach ($news as $k =>$new):
+              if ($k < HOME_NB_NEWS) {
+                $fade[0] = "fade-right" ;
+                $fade[1] = "fade-up" ;
+                $fade[2] = "fade-left" ;
+
+                $tab_params["id_language"] = DEFAULT_LANG_ID ;
+                $tab_params["resource"] = "news" ;
+                $tab_params["action"] = "fiche" ;
+
+                $getUrl = Application_Class_Url::getMultilingualUrl($tab_params) ;
+            ?>
+              <div class="news-style-one col-md-4 col-sm-6 col-xs-12 aos-init aos-animate" data-aos="<?php echo $fade[$k] ?>" data-aos-duration="700">
+                  <div class="inner-box">
+                      <div class="image-box">
+                          <a href="<?php echo str_replace("#permalink#", $new["seo_permalink"], $getUrl) ?>">
+                            <div style="background: url(<?php echo $new["cover"]["url"] ?>);background-size: cover;height: 250px;width: 350px"></div>
+                          </a>
+                        </div>
+                        <div class="lower-content">
+                          <div class="upper-box">
+                              <div class="post-date"><?php echo Application_Class_Date::formatfromMysql($new["create_date"]) ?></div>
+                                <h3><a href="<?php echo str_replace("#permalink#", $new["seo_permalink"], $getUrl) ?>"><?php echo $new["title"] ?></a></h3>
+                                <div class="text"><?php echo Application_Class_Utils::chopText($new['text'],250) ?></div>
+                            </div>
+                            <div class="lower-box clearfix">
+                              <div class="pull-left">
+                                  <a href="<?php echo str_replace("#permalink#", $new["seo_permalink"], $getUrl) ?>" class="read-more"><?php echo $this->translate("Lire plus") ?></a>
+                                </div>
+                                <?php /* ?>
+                                <div class="pull-right">
+                                    <ul class="post-meta">
+                                      <li><a href="<?php echo $this->baseUrl() ?>news/fiche"><span class="icon flaticon-heart-1"></span> 807</a></li>
+                                    </ul>
+                                </div>
+                                <?php */ ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--News Style One-->
+            <?php }  
+              endforeach 
+            ?>
+          <?php endif ?>
+          
+        </div>
+    </div>
+</section>
+<!--End News Section-->

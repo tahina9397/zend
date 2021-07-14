@@ -1,0 +1,55 @@
+<?php 
+    $id = $this->media_id;
+    $media_data = Application_Model_Media::getMediaData($id);
+    $media_width     = $media_data['width'];
+    $media_height    = $media_data['height'];
+    $media_filesize  = $media_data['filesize'];
+    $media_extension = Application_Model_Media::getMediaExtension($id);
+    $media_url       = Application_Model_Media::getUrlById($id);
+    $media_infos     = Application_Model_Media::get($id);
+    $media           = Application_Model_Media::getMultilingualById($id);
+?>
+
+<div data-id="<?php echo $id; ?>" class="attachment-details">
+    <input type="hidden" id="media_id" name="media_id" value="<?php echo $id; ?>">
+
+    <div class="caption">
+        <h4>Détails du fichier attaché</h4>
+        <div class="attachment-info">
+            <div class="thumbnail thumbnail-image">
+                 
+            </div>
+
+            <table class="table table-condensed mt-25px" style="font-size: 12px">
+                <tbody>
+                    <tr>
+                        <td colspan="2" style="text-align: center">
+                            <div class="wrap" style="width: 100%;height: 200px;background: url(<?php echo $media_url ?>);background-size: cover"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nom du fichier</strong></td>
+                        <td><?php echo $media_infos["filename"]; ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Date de création</strong></td>
+                        <td><?php echo Application_Class_Date::formatfromMysql($media_infos['create_date']); ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Taille du fichier</strong></td>
+                        <td><?php echo $media_filesize ?></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dimension du fichier</strong></td>
+                        <td><?php echo $media_width; ?> × <?php echo $media_height; ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-25px">
+            <a href="javascript:void(0)" id="addImage" class="btn btn-primary btn-block ">Définir comme image de couverture</a>
+        </div>
+    </div>
+
+</div>

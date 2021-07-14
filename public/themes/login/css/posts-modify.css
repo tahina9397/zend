@@ -1,0 +1,4 @@
+div.editable{border:1px solid #dadada;padding: 10px!important}
+.row-fluid.editable [class*="span"]{margin-left: 0!important}
+.medium-editor-placeholder:after{padding: 10px!important}
+.row-fluid [class*="span"].medium-editor-insert-plugin{margin-left: 0px!important}

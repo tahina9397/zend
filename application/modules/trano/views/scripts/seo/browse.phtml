@@ -1,0 +1,103 @@
+<?php 
+	$seo_id = $this->id_item;
+	$social_str = $this->social;
+
+	$get = Application_Model_Global::pselectRow(TABLE_PREFIX.'seo','media_id_facebook,media_id_twitter','id=:seo_id',array(":seo_id" => $seo_id));
+
+	if (!empty($get)) {
+		$idMedia = ($social_str == 'facebook') ? $get['media_id_facebook'] : $get['media_id_twitter'] ;
+	}
+	else
+	{
+		$idMedia = 0 ;
+	}
+ ?>
+
+<link rel="stylesheet" type="text/css" href="<?php echo THEMES_TRANO_URL.'css/mediabrowse.css?v='.rand(); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo THEMES_TRANO_URL.'css/draganddrop.css?v='.rand(); ?>" />
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL.'js/medias-browse.js?v='.rand(); ?>"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL.'js/medias-index.js?v='.rand(); ?>"></script>
+
+<input type="hidden" id="id_item" name="id_item" value="<?php echo $this->id_item; ?>">
+<input type="hidden" id="media_id" name="media_id" value="<?php echo $idMedia ?>">
+<input type="hidden" id="social" name="social" value="<?php echo $this->social ?>">
+<?php /* ?>
+<input type="hidden" id="module" name="module" value="<?php echo $this->module; ?>">
+<input type="hidden" id="type" name="type" value="<?php echo $this->type; ?>">
+<?php */ ?>
+
+<div class="media-frame-title">
+	<h1><?php echo ucfirst($this->social) ?><span class="dashicons dashicons-arrow-down"></span></h1>
+</div>
+
+<div class="media-frame-router">
+	<div class="widget">
+	    <div class="tabbable">
+	        <ul class="nav nav-tabs">
+	            <li class="active"><a href="#tab2" data-toggle="tab"><?php echo $this->translate("Bibliothèque de médias"); ?></a></li>
+	        </ul>
+	    </div>
+	</div>
+</div>
+
+<div class="media-frame-content media-frame">
+	<div class="attachments-browser">
+		<div class="tab-content">
+		    <div class="tab-pane active" id="tab2">
+		    	<div class="gallery-image-view">
+		    		<ul class="attachments reorder_ul reorder-photos-list ui-sortable">
+                        <?php 
+                        $media_id = NULL;
+                        if(!empty($this->medias)){
+                            foreach ($this->medias as $k => $media) {
+                                $media_id = (int)$media['media_id'];
+                                $media_url = Application_Model_Media::getUrlById($media_id);
+
+                                // $current = '';
+                                // if($k==0 && !$this->id_media){
+                                //     $current = 'current';
+                                //     $media_id_current = $media_id;
+                                // }
+                                // if($media_id==$this->id_media){
+                                //     $current = 'current';
+                                //     $media_id_current = $media_id;
+                                // }
+                        ?>
+        				        <li onclick="update_sidebar(<?php echo $media_id ?>)" data-module="media" id="<?php echo $media_id; ?>" class="ui-sortable-handle <?php echo $current; ?>">
+                                    <a style="float:none;" class="image_link">
+                                        <div class="wrap">
+                                            <i style="background-image: url(<?php echo $media_url; ?>);"></i>
+                                        </div>
+                                    </a>
+                                </li>				
+                        <?php 
+                                }
+                            } 
+                        ?>
+		    		</ul>
+		    	</div>
+
+		    	<?php  ?>
+		    	<div class="media-sidebar">
+                    <?php 
+                    	if ($idMedia) {
+                    		echo $this->partial("seo/sidebar/media_metas.phtml", array("media_id"=>$idMedia));
+                    	}
+                     ?>
+		    	</div>
+		    	<?php  ?>
+
+
+		    </div>
+		</div>
+	</div>
+</div>
+
+<div class="media-frame-toolbar">
+	<div class="media-toolbar">
+		<div class="media-toolbar-secondary"></div>
+		<div class="media-toolbar-primary search-form">
+			<a id="addImageSocial" style="cursor:pointer" class="btn btn-info media-button-select"><?php echo $this->translate("Mettre à jour"); ?></a>
+		</div>
+	</div>
+</div>

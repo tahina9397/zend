@@ -1,0 +1,11 @@
+<?php 
+	$getCommentsByIdNew = Application_Model_News::getCommentsByIdNew($this->id_new) ;
+	$getPostViews = Application_Model_News::getPostViews($this->id_new) ;
+?>
+
+<div class="pull-right">
+	<ul class="post-meta">
+    	<li><a href="javascript:void(0)"><span class="icon flaticon-chat"></span><?php echo sizeof($getCommentsByIdNew) ?></a></li>
+        <li><a href="javascript:void(0)"><span class="icon flaticon-eye-open"></span><?php echo $getPostViews["nb_views"] ?></a></li>
+    </ul>
+</div>

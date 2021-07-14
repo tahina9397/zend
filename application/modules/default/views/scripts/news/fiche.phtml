@@ -1,0 +1,83 @@
+<?php 
+    $new = $this->new ;
+
+    echo $this->partial("_partials/page-title.phtml",array("page" => $this->translate("Actualités"),"resource_type" => "news","data" => $new["title"])) ;
+
+    $tab_params["id_language"] = DEFAULT_LANG_ID ;
+    $tab_params["resource"] = "news" ;
+    $tab_params["action"] = "fiche" ;
+
+    $getUrl = Application_Class_Url::getMultilingualUrl($tab_params) ;
+?>
+
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+	<div class="auto-container">
+    	<div class="row clearfix">
+        	
+            <!--Content Side-->
+            <div class="content-side blog-single col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            	<!--News Style Two-->
+            	<div class="news-style-two">
+                	<div class="inner-box">
+                        <div class="lower-content">
+                            <h3 class="aos-init aos-animate" data-aos="fade-up" data-aos-duration="700"><?php echo $new["title"] ?></h3>
+                            <div class="text">
+                                <?php echo $new["text"] ?>
+                            </div>
+
+                                <div class="image">
+                                    <img src="<?php echo $new["cover"]["url"] ?>" alt="<?php echo $new["title"] ?>" />
+                                </div>
+
+                        	<div class="upper-box clearfix">
+                            	<div class="pull-left">
+                                    <div class="post-date pt-10"><?php echo str_replace("#date_publication#", "<span>".Application_Class_Date::formatfromMysql($new["create_time"])."</span>", $this->translate("Publié le : #date_publication# ")) ?></div>
+                                </div>
+
+                                <?php echo $this->partial("news/_partials/post-meta.phtml",array("id_new" => $this->id_new)) ?>
+                                
+                            </div>
+                            
+                            <!--Social Icon Four-->
+                            <ul class="social-icon-four">
+                            	<li class="share"><?php echo $this->translate("Partager cet article") ?></li>
+                                <li><a href="http://www.facebook.com/sharer.php?u=<?php echo str_replace("#permalink#", $new["seo_permalink"], $getUrl) ?>" target="_blank" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=380,width=660');return false;"><span class="fa fa-facebook"></span></a></li>
+
+                                <?php /* ?>
+                                <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                                <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+                                <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+                                <?php */ ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <?php 
+                    echo $this->partial("news/_partials/fiche/comments-area.phtml",array("paginator" => $this->paginator,"id_new" => $this->id_new)) ;
+                    echo $this->partial("news/_partials/fiche/comment-form.phtml",array("id_new" => $this->id_new)) ;
+                ?>
+                
+            </div>
+            
+            <!--Sidebar-->
+            <div class="sidebar-side col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <aside class="sidebar">
+
+                    <?php 
+                        echo $this->partial("news/_partials/aside/search-box.phtml") ;
+                        // echo $this->partial("news/_partials/aside/sidebar-blog-category.phtml") ;
+                        echo $this->partial("news/_partials/aside/popular-posts.phtml") ;
+                        echo $this->partial("news/_partials/aside/facebook.phtml") ;
+                        // echo $this->partial("news/_partials/aside/join-widget.phtml") ;
+                        // echo $this->partial("news/_partials/aside/gallery-widget.phtml") ;
+                        echo $this->partial("news/_partials/aside/sidebar-blog-archive.phtml") ;
+                    ?>
+					
+                </aside>
+            </div>
+            
+        </div>
+    </div>
+</div>

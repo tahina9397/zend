@@ -1,0 +1,19 @@
+<?php echo $this->partial("_partials/page-title.phtml",array(
+	"page" => $this->category_title
+	,"resource_type" => "products"
+	,"category_permalink" => Zend_Controller_Front::getInstance()->getRequest()->getParam('category_permalink')
+	,"data" => $this->datas["category_title"]
+)) ; ?>
+
+<?php 
+	if (!empty($this->datas["content"])) {
+		foreach ($this->datas["content"] as $k => $data) {
+			$phtml = ($k % 2 == 1) ? "right-image.phtml" : "left-image.phtml" ;
+			echo $this->partial("products/_partials/fullwidth-section/".$phtml,array("content" => $data)) ;
+		}
+
+		if (!empty($this->lots)) {
+			echo $this->partial("products/_partials/lots.phtml",array("lots" => $this->lots)) ;
+		}
+	}
+?>

@@ -1,0 +1,23 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Nouveau commentaire</title>
+</head>
+
+<body>
+	<?php 
+		$datas = $this->datas ;
+	?>
+	<table width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>
+				<table cellpadding="20" cellspacing="0" width="600" align="center">
+					<p>
+						Nouveau commentaire de <strong><?php echo $datas["from"] ?></strong> sur l'article <strong><?php echo $datas["title"] ?></strong>
+					</p>
+				</table><!-- top message -->
+			</td>
+		</tr>
+	</table><!-- wrapper -->
+</body>
+</html>

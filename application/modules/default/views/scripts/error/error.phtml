@@ -1,0 +1,75 @@
+<?php if ($_SERVER['SERVER_ADDR'] == '127.0.0.1'){ ?>
+    <h1>An error occurred</h1>
+    <h2><?php echo $this->message ?></h2>
+
+    <?php if (isset($this->exception)): ?>
+
+      <h3>Exception information:</h3>
+      <p>
+        <b>Message:</b> <?php echo $this->exception->getMessage() ?>
+      </p>
+
+      <h3>Stack trace:</h3>
+      <pre><?php echo $this->exception->getTraceAsString() ?>
+      </pre>
+
+      <h3>Request Parameters:</h3>
+      <pre><?php echo $this->escape(var_export($this->request->getParams(), true)) ?>
+      </pre>
+
+      <?php
+     endif ?>
+<?php } else{  
+    $about_url = Application_Class_Url::getMultilingualUrl(array("id_language" => DEFAULT_LANG_ID,"resource" => "pages","action" => "about")) ;
+    $products_url = Application_Class_Url::getMultilingualUrl(array("id_language" => DEFAULT_LANG_ID,"resource" => "products","action" => "all")) ;
+    $news_url = Application_Class_Url::getMultilingualUrl(array("id_language" => DEFAULT_LANG_ID,"resource" => "news","action" => "index")) ;
+?>
+     <!-- Start main-content -->
+     <div id="wrapper" class="clearfix">
+      <!-- preloader -->
+      <?php /* ?>
+      <div id="preloader">
+        <div id="spinner">
+          <div class="preloader-dot-loading">
+            <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+        <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+      </div>
+      <?php */ ?>
+      
+       <div class="main-content">     
+         <!-- Section: home -->
+         <section id="home" class="fullscreen bg-lightest">
+           <div class="display-table text-center">
+             <div class="display-table-cell">
+               <div class="container pt-0 pb-0">
+                 <div class="row">
+                   <div class="col-md-7">
+                     <h1 class="font-200 line-height-1em mt-0 mb-0 text-theme-colored">404!</h1>
+                     <h2 class="mt-0"><?php echo $this->translate("Oops! Page non trouvée") ?></h2>
+                     <p><?php echo $this->translate("La page que vous recherchez est introuvable") ?></p>
+                     <a class="btn btn-border btn-gray btn-transparent btn-circled smooth-scroll-to-target" onclick="window.location.href='<?php echo $this->baseUrl() ?>/'"><?php echo $this->translate("Page d'accueil") ?></a>
+                   </div>
+                   <div class="col-md-4">
+                     <h3><?php echo $this->translate("Liens utiles") ?></h3>
+                     <div class="widget">
+                       <ul class="list-border">
+                         <li><a href="<?php echo $about_url ?>"><?php echo $this->translate("Présentation") ?></a></li>
+                         <li><a href="<?php echo $products_url ?>"><?php echo $this->translate("Nos produits") ?></a></li>
+                         <li><a href="<?php echo $news_url ?>"><?php echo $this->translate("Actualités") ?></a></li>
+                         <li><a href="<?php echo $this->baseurl() ?>/contact"><?php echo $this->translate("Formulaire de contact") ?></a></li>
+                       </ul>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </section> 
+       </div>  
+     </div>
+    
+    <!-- end main-content -->
+<?php  }   ?>
+    

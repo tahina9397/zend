@@ -1,0 +1,21 @@
+<?php 
+    $content = $this->content ;
+?>
+
+<!--FullWidth Section-->
+<section class="fullwidth-section aos-init aos-animate" data-aos="fade-left" data-aos-duration="700">
+	<div class="section-outer clearfix">
+    	<div class="image-column" style="background-image:url(<?php echo $content["cover"]["url"] ?>);">
+        	<div class="hidden-image"><img src="<?php echo $content["cover"]["url"] ?>" alt=""></div>
+        </div>
+        <div class="content-column">
+        	<div class="content">
+                <div class="text">
+                    <h2><?php echo $content["title"] ?></h2>
+                    <?php echo $content["text"] ?>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>
+<!--End FullWidth Section-->

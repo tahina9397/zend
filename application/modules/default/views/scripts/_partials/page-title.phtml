@@ -1,0 +1,40 @@
+<?php 
+    $url = "javascript:void(0)" ;
+    $url_class = "text-white" ;
+    $li = "" ;
+
+    if (!empty($this->resource_type)) {
+        switch ($this->resource_type) {
+            case 'products':
+                    $url = Application_Class_Url::getMultilingualUrl(array("id_language" => DEFAULT_LANG_ID,"resource" => "products","action" => "index")) ;
+                    $url = str_replace("#category_permalink#", $this->category_permalink, $url) ;
+                    $url_class .= " hover-underline cpointer"  ;
+                    $li = '<li>'.$this->data.'</li>' ;
+                break;
+
+            case 'news':
+                    $url = Application_Class_Url::getMultilingualUrl(array("id_language" => DEFAULT_LANG_ID,"resource" => "news","action" => "index")) ;
+                    $url_class .= " hover-underline cpointer"  ;
+                    $li = '<li>'.$this->data.'</li>' ;
+                break;
+            
+            default:
+                break;
+        }
+    }
+?>
+
+<!--Page Title-->
+<section class="page-title" style="/*background-image:url(<?php echo THEMES_DEFAULT_URL ?>images/background/5.jpg);*/background-color: #c29ed3">
+	<div class="auto-container">
+    	<div class="inner-box">
+            <h1><?php echo $this->page ?></h1>
+            <ul class="bread-crumb">
+            	<li><a href="<?php echo $this->baseUrl() ?>/" class="text-white hover-underline"><?php echo $this->translate("Accueil") ?></a></li>
+                <li><a href="<?php echo $url ?>" class="<?php echo $url_class ?>" ><?php echo $this->page ?></a></li>
+                <?php echo $li ; ?>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--End Page Title-->

@@ -1,0 +1,51 @@
+<?php 
+	$id = Application_Class_Utils::idx($this->lots, 'id', 0); 
+
+    $sQuery = "
+      SELECT 
+        cm.title
+      FROM ".TABLE_PREFIX."categories c
+      LEFT JOIN ".TABLE_PREFIX."categories_multilingual cm ON c.id=cm.id_category
+      WHERE c.id = :id_product
+    ";
+
+    $rResult = Application_Model_Global::pqueryRow($sQuery,array(":id_product" => $this->id_product));
+?>
+<div class="content">
+    <h3 class="text-light"><?php echo str_replace("#title#", $rResult["title"], "Modification lots pour #title#") ?></h3>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+	        <form method="post" action="" id="images-form" class="form-horizontal form-to-validate">
+	            <input type="hidden" value="<?php echo $id; ?>" id="id" name="Lots[id]">
+	          
+		    	<div class="row-fluid">
+			    	<div class="span9">
+                        <div class="well">
+                            <div class="tabbable">
+                                
+                                <div class="well tab-form-content">
+                                    <div class="control-group">
+                                        <label class="control-label" for="title"><span class="text-error">*</span> <?php echo $this->translate("Titre"); ?>:</label>
+                                        <div class="controls" style="margin-top: 5px">
+                                            <input type="text" name="Lots[title]" id="title" class="validate[required] span12" value="<?php echo $this->lots["title"] ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+				    </div>
+
+				    <div class="span3">
+			    	    <div class="well">
+                            <div class="form-actions">
+                                <button id="save" class="btn btn-primary" type="submit"><?php echo $this->translate("Enregistrer"); ?></button>
+                                <button type="button" class="btn btn-danger ml5" onclick="window.location.href='<?php echo $this->baseUrl() ?>/lots'"><?php echo $this->translate("Retour"); ?></button>
+                            </div>
+			    		</div>
+				    </div>
+				</div>
+	        </form>
+        </div>
+    </div>
+</div>

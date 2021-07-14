@@ -1,0 +1,75 @@
+<?php $id_item = Application_Class_Utils::idx($this->template, 'id', 0); ?>
+
+<!-- Main content -->
+<div class="content">
+    <h3 class="text-light">Template</h3>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+
+            <?php  ?>
+            <form method="post" action="" id="categories-form" class="form-horizontal form-to-validate">
+                <input type="hidden" value="<?php echo Application_Class_Utils::idx($this->template, 'id', ''); ?>" id="id" name="Template[id]">
+
+                <div class="row-fluid">
+                    <div class="span9">
+                        <div class="well">
+                            <div class="box">
+                                <div class="tabbable"><!-- multilingual tabs -->
+                                    <?php Application_Class_Snippets::multilingualTabs(); ?>
+
+                                    <div class="box">
+                                        <div class="well tab-form-content">
+                                            <div class="control-group">
+                                                <label class="control-label" for="text"> Contenu:</label>
+                                                <div class="controls">
+                                                    <?php 
+                                                        $attributes = array(
+                                                            'classic' => array(
+                                                                'autocomplete' => 'off'
+                                                                ,'rows'        => 10
+                                                            )
+                                                            ,'custom' => array(
+                                                                'id'      => 'text'
+                                                                ,'class'  => 'span12 multilingual ckeditor'
+                                                                ,'module' => 'Template'
+                                                                ,'name'   => 'text'
+                                                                ,'data'   => $this->template
+                                                            )
+                                                        );
+                                                        Application_Class_Forms::textareaMultilingual($attributes); 
+                                                        Application_Class_Ckeditor::initToggleCkeditor('text'); 
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>  
+                                    
+                                </div><!-- end multilingual tabs -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span3">
+                        <div class="well">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <h6>Publier</h6>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <button class="btn btn-primary" type="submit">Enregistrer</button>
+                                <button type="button" class="btn btn-danger ml5" onclick="window.location.href='/newsletter/template'">Retour</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb60"></div>
+            </form>
+            <?php  ?>
+        </div>
+    </div>
+</div>
+<!-- /main content -->

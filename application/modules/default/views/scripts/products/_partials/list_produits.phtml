@@ -1,0 +1,22 @@
+<?php 
+	$tab_params["id_language"] = DEFAULT_LANG_ID ;
+	$tab_params["resource"] = "products" ;
+	$tab_params["action"] = "fiche" ;
+
+	$getUrl = Application_Class_Url::getMultilingualUrl($tab_params) ;
+
+    array_multisort(array_column($this->products, 'title'), SORT_ASC, $this->products);
+?>
+
+<div class="text links-widget">
+    <ul class="links">
+        <?php foreach ($this->products as $product): 
+            $d = Application_Model_Page::getPageByCatId($product["id"]) ;
+
+            $url = str_replace("#category_permalink#", $this->category_permalink, $getUrl) ;
+            $url = str_replace("#permalink#", $d["category_permalink"], $url) ;
+        ?>
+            <li class="aos-init aos-animate" data-aos="fade-right" data-aos-duration="700"><strong><a href="<?php echo $url ?>" class="text-192e43"><?php echo $d["category_description"]; ?></a></strong></li>
+        <?php endforeach ?>
+    </ul>
+</div>

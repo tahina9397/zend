@@ -1,0 +1,26 @@
+<?php 
+    $getIdCategoryGroupByModule = Application_Model_Module::getIdCategoryGroupByModule(2) ;
+?>
+
+<?php echo $this->partial("_partials/page-title.phtml",array("page" => $this->translate("Nos produits"))) ?>
+
+
+<?php 
+    if (!empty($getIdCategoryGroupByModule)) {
+        foreach ($getIdCategoryGroupByModule as $k => $value) {
+            $getGroupById = Application_Model_Group::getGroupById($value) ;
+
+            $products = Application_Model_Category::getCategoryByIdCategoryGroup($value) ;
+            $category_permalink = $getGroupById["permalink_".DEFAULT_LANG_ABBR] ;
+
+            $data = array(
+                "title" => $getGroupById["title_".DEFAULT_LANG_ABBR]
+                ,"text" => $this->partial("products/_partials/list_produits.phtml",array("products" => $products,"category_permalink" => $category_permalink))
+                ,"cover" => array("url" => $getGroupById["cover"]["url"])
+            ) ; 
+
+            $phtml = ($k % 2 == 1) ? "right-image.phtml" : "left-image.phtml" ;
+            echo $this->partial("products/_partials/fullwidth-section/".$phtml,array("content" => $data)) ;
+        }
+    }
+?>

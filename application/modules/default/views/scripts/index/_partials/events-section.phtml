@@ -1,0 +1,56 @@
+<?php 
+  $get = Application_Model_Global::pselect(TABLE_PREFIX."produits_phares","id_category","archive = 1") ;
+
+  $tab_params["id_language"] = DEFAULT_LANG_ID ;
+  $tab_params["resource"] = "products" ;
+  $tab_params["action"] = "fiche" ;
+
+  $getUrl = Application_Class_Url::getMultilingualUrl($tab_params) ;
+?>
+
+<!--Events Section-->
+<section class="events-section" style="background-image:url(<?php echo THEMES_DEFAULT_URL ?>images/background/2.jpg);">
+  <div class="auto-container">
+      <!--Sec Title-->
+        <div class="sec-title light centered aos-init aos-animate" data-aos="fade-up" data-aos-duration="700">
+          <?php /* ?><div class="title">Participate With Us</div><?php */ ?>
+          <h2><?php echo $this->translate("Nos produits phares") ?></h2>
+        </div>
+
+        <?php if (!empty($get)): ?>
+          <!--Events Carousel-->
+          <div class="events-carousel owl-carousel owl-theme aos-init aos-animate" data-aos="fade-up" data-aos-duration="700">
+            <?php foreach ($get as $key => $value): 
+              $p = Application_Model_Page::getPageByCatId($value["id_category"]) ;
+              $url = str_replace("#category_permalink#", $p["category_group_permalink"], $getUrl) ;
+              $url = str_replace("#permalink#", $p["category_permalink"], $url) ; 
+            ?>
+              <!--Event Block-->
+              <div class="event-block">
+                  <div class="inner-box clearfix">
+                      <!--Image Column-->
+                      <div class="image-column col-md-6 col-sm-12 col-xs-12">
+                          <div class="image">
+                              <img src="<?php echo $p["category_cover"]["url"] ?>" alt="<?php echo $p["category_description"] ?>" />
+                            </div>
+                        </div>
+                        <!--Content Column-->
+                      <div class="content-column col-md-6 col-sm-12 col-xs-12">
+                          <div class="inner">
+                              <h3><a href="#"><?php echo $p["category_description"] ?></a></h3>
+                                <div class="text"><?php echo $p["category_text"] ?></div>
+                                <a href="<?php echo $url ?>" class="view-detail"><?php echo $this->translate("Voir plus de détails") ?>&nbsp;<span class="flaticon-login"></span></a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <!--Event Block-->
+            <?php endforeach ?>
+            
+        <?php endif ?>
+            
+        </div>
+    </div>
+</section>
+<!--End Events Section-->

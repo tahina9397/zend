@@ -1,0 +1,16 @@
+<?php
+$flashMessages = $this->GetAlerts();
+if (count($flashMessages)) :
+	foreach ($flashMessages as $message) :
+		
+		$msg   = $message['message'];
+		$title = $message['title'];
+		$level = $message['level'];
+
+		if ($msg) {
+		?>
+			<script type="text/javascript">$.growl.<?php echo  $level; ?>({ title: "<?php echo  $title; ?>", message: "<?php echo  $msg; ?>" });</script>
+		<?php
+		}
+	endforeach;
+endif;

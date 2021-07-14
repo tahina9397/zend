@@ -1,0 +1,86 @@
+<?php 
+    $q =  Zend_Controller_Front::getInstance()->getRequest()->getParam('q');
+    $_adapter = Application_Class_Utils::accessProtected($this->paginator,"_adapter") ;
+    $news = Application_Class_Utils::accessProtected($_adapter,"_array") ;
+?>
+
+<?php echo $this->partial("_partials/page-title.phtml",array("page" => $this->translate("Actualités"))) ?>
+
+<!--Sidebar Page Container-->
+<div class="sidebar-page-container">
+	<div class="auto-container">
+    	<div class="row clearfix" >
+        	
+            <!--Content Side-->
+            <div id="results_wrapper">
+                <div class="content-side col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                    <?php if (!empty($news)){ ?>
+                        <?php foreach ($this->paginator as $new): 
+                            $tab_params["id_language"] = DEFAULT_LANG_ID ;
+                            $tab_params["resource"] = "news" ;
+                            $tab_params["action"] = "fiche" ;
+
+                            $getUrl = Application_Class_Url::getMultilingualUrl($tab_params) ;
+                        ?>
+                                <!--News Style Two-->
+                                <div class="news-style-two aos-animate mb-25px" data-aos="zoom-in-up">
+                                    <div class="inner-box">
+                                        <div class="lower-content">
+                                            <h3><a href="<?php echo str_replace("#permalink#", $new["seo_permalink"], $getUrl) ?>"><?php echo $new["title"] ?></a></h3>
+                                            <div class="text">
+                                                <?php echo Application_Class_Utils::chopText($new['text'],250) ?>&nbsp;&nbsp;<a href="<?php echo str_replace("#permalink#", $new["seo_permalink"], $getUrl) ?>" class="" style="text-decoration: underline;"><?php echo $this->translate("Lire la suite") ?></a>
+                                            </div>
+
+                                            <div class="image">
+                                                <a href="<?php echo str_replace("#permalink#", $new["seo_permalink"], $getUrl) ?>">
+                                                    <?php /* ?><img src="<?php echo $new["cover"]["url"] ?>" alt="" /><?php */ ?>
+                                                    <div style="background: url(<?php echo $new["cover"]["url"] ?>);background-size: cover;min-height:500px;max-height:500px;width: 100%"></div>
+                                                </a>
+                                            </div>
+
+                                            <div class="upper-box clearfix">
+                                                <div class="pull-left">
+                                                    <div class="post-date pt-10"><?php echo str_replace("#date_publication#", "<span>".Application_Class_Date::formatfromMysql($new["create_date"])."</span>", $this->translate("Publié le : #date_publication# ")) ?></div>
+                                                </div>
+
+                                                <?php echo $this->partial("news/_partials/post-meta.phtml",array("id_new" => $new["page_id"])) ?>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php endforeach ?>
+                    <?php } else{ ?>
+                        <h2 class="text-center"><?php echo $this->translate("Pas de résultats") ?></h2>
+                    <?php } ?>
+
+                    <?php
+                        echo "<input type='hidden' name='__pagination__' data-resource_type='news' data-search='".$q."'>" ; 
+                        echo $this->paginator;
+                    ?>
+                   
+
+                </div>
+            </div>
+            
+            <!--Sidebar-->
+            <div class="sidebar-side col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <aside class="sidebar">
+
+                    <?php 
+                        echo $this->partial("news/_partials/aside/search-box.phtml") ;
+                        // echo $this->partial("news/_partials/aside/sidebar-blog-category.phtml") ;
+                        echo $this->partial("news/_partials/aside/popular-posts.phtml") ;
+                        echo $this->partial("news/_partials/aside/facebook.phtml") ;
+                        // echo $this->partial("news/_partials/aside/join-widget.phtml") ;
+                        // echo $this->partial("news/_partials/aside/gallery-widget.phtml") ;
+                        echo $this->partial("news/_partials/aside/sidebar-blog-archive.phtml") ;
+                    ?>
+                    
+                </aside>
+            </div>
+            
+        </div>
+    </div>
+</div>

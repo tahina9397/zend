@@ -1,0 +1,54 @@
+<?php 
+    $chunked_products = array_chunk($this->products, 3) ;
+?>
+
+<section class="services-section-two left-side-img">
+        <div class="auto-container">
+            <!--Sec Title-->
+            <div class="sec-title centered aos-init aos-animate" data-aos="fade-up" data-aos-duration="700">
+                <h2><?php echo $this->translate("Nos produits sont  Purs et Naturels") ?>,&nbsp;<span><?php echo $this->translate("c'est à dire") ?></span></h2>
+            </div>
+            <div class="row clearfix">
+            
+                <!--Column-->
+                <div class="column pull-left col-md-4 col-sm-6 col-xs-12">
+                    <?php foreach ($chunked_products[0] as $key => $value): ?>
+                        <!--Services Block Three-->
+                        <div class="services-block-three aos-init aos-animate" data-aos="fade-right" data-aos-duration="700">
+                            <div class="inner-box">
+                                <div class="icon-box">
+                                    <span class="icon"><img src="<?php echo $value["cover"]["url"] ?>" alt="<?php echo $value["title"] ?>"></span>
+                                </div>
+                                <div class="text"><?php echo $value["text"] ?></div>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
+                </div>
+                
+                <!--Column-->
+                <div class="column pull-right col-md-4 col-sm-6 col-xs-12">
+                    
+                    <?php foreach ($chunked_products[1] as $key => $value): ?>
+                        <!--Services Block Four-->
+                        <div class="services-block-four aos-init aos-animate" data-aos="fade-left" data-aos-duration="700">
+                            <div class="inner-box">
+                                <div class="icon-box">
+                                    <span class="icon"><img src="<?php echo $value["cover"]["url"] ?>" alt="<?php echo $value["title"] ?>"></span>
+                                </div>
+                                <div class="text"><?php echo $value["text"] ?></div>
+                            </div>
+                        </div>
+                    <?php endforeach ?>
+                </div>
+                
+                <!--bulb box-->
+                <div class="bulb-box">
+                    <div class="image-column">
+                        <?php /* ?><img src="<?php echo THEMES_DEFAULT_URL ?>images/resource/bulb-icon.png" alt=""><?php */ ?>
+                        <img src="<?php echo THEMES_DEFAULT_URL ?>images/pages/quality/flacon-goutte-huile.jpg" width="299" height="458" alt="">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>

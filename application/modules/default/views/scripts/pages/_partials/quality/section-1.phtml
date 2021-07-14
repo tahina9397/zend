@@ -1,0 +1,30 @@
+<style type="text/css">
+    div.text ul li{list-style: inside !important;}
+</style>
+
+
+<section class="environment-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Content Column-->
+            <div class="content-column col-md-6 col-sm-12 col-xs-12">
+                <div class="content-inner">
+                    <!--Sec Title-->
+                    <div class="sec-title aos-init aos-animate" data-aos="fade-right" data-aos-duration="700">
+                        <?php /* ?><div class="title">Let’s Promote the Ecology</div><?php */ ?>
+                        <h2><?php echo $this->content["title"] ?></span></h2>
+                    </div>
+                    <div class="text aos-init aos-animate" data-aos="fade-right" data-aos-duration="700">
+                        <?php echo $this->content["text"] ?>
+                    </div>
+                </div>
+            </div>
+            <!--Image Column-->
+            <div class="image-column clearfix col-md-6 col-sm-12 col-xs-12 aos-init aos-animate" data-aos="fade-left" data-aos-duration="700">
+                <div class="large-image">
+                    <img src="<?php echo $this->content["cover"]["url"] ?>" alt="<?php echo $this->content["title"] ?>">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

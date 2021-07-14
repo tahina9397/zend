@@ -1,0 +1,95 @@
+<?php 
+    $request = Zend_Controller_Front::getInstance()->getRequest();
+    $resource = $request->getControllerName();
+    $action  = $request->getActionName();
+
+    /*only for pages*/
+    $slug =  Zend_Controller_Front::getInstance()->getRequest()->getParam('slug');
+
+    /*only for langage*/
+    $id_lang =  Zend_Controller_Front::getInstance()->getRequest()->getParam('id');
+?>
+
+<style type="text/css">
+    .visite-site{
+        background-image: none !important;
+        background-color: #aa5555 !important ;
+    }
+</style>
+
+<!-- Left sidebar -->
+<div class="sidebar" id="left-sidebar">
+    <ul class="navigation standard"><!-- standard nav -->
+        <li><a href="<?php echo Zend_Registry::get("option")->company_site ; ?>" title="<?php echo Zend_Registry::get("option")->site_name ?>" class="visite-site" target="_blank"><img src="<?php echo THEMES_TRANO_URL ?>images/icons/mainnav/page-layouts.png" alt="" />Visiter le site</a></li>
+
+
+        <?php 
+            $is_category = false;
+            if( Application_Class_String::contains('/categories', $_SERVER['REQUEST_URI']) OR  
+                Application_Class_String::contains('/groups', $_SERVER['REQUEST_URI']) OR 
+                Application_Class_String::contains('/modules', $_SERVER['REQUEST_URI'])
+            ) 
+            $is_category = true;
+        ?>
+        <li class="<?php echo ($is_category) ? "active" : "" ?>">
+            <a href="javascript:void(0)" title="Catégories" class="expand" id="<?php echo ($is_category) ? "current" : "" ?>"><img src="<?php echo THEMES_TRANO_URL ?>images/icons/mainnav/dashboard.png" alt="" />Catégories<strong>2</strong></a>
+
+            <ul <?php echo ($is_category) ? 'style="display: block"' : 'style="display: none"' ; ?> >
+                <?php /* ?><li class="<?php echo ($resource == "modules") ? "current" : "" ?>"><a href="<?php echo $this->baseUrl() ?>/modules" title="Modules">Modules</a></li><?php */ ?>
+                <li class="<?php echo ($resource == "groups") ? "current" : "" ?>"><a href="<?php echo $this->baseUrl() ?>/groups" title="Groupes">Groupes</a></li>
+                <li class="<?php echo ($resource == "categories") ? "current" : "" ?>"><a href="<?php echo $this->baseUrl() ?>/categories" title="Catégories">Catégories</a></li>
+            </ul>
+        </li>
+
+        <?php 
+            $modules = Application_Model_Module::getModules() ;
+
+            if (!empty($modules)) {
+                array_multisort(array_column($modules, 'title'), SORT_ASC, $modules);
+
+            $is_pages = false;
+            if( Application_Class_String::contains('/pages', $_SERVER['REQUEST_URI']) )
+                $is_pages = true;
+        ?>
+        <li class="<?php echo ($is_pages) ? "active" : "" ?>">
+            <a href="javascript:void(0)" title="Pages" class="expand" id="<?php echo ($is_pages) ? "current" : "" ?>" ><img src="<?php echo THEMES_TRANO_URL ?>images/icons/mainnav/dashboard.png" alt="" />Pages<strong><?php echo sizeof($modules) ?></strong></a>
+
+            <ul <?php echo ($is_pages) ? 'style="display: block"' : 'style="display: none"' ; ?> >
+                <?php foreach ($modules as $module): ?>
+                    <li class="<?php echo ($resource == "pages" && $slug == $module["slug"] ) ? "current" : "" ?>"><a href="<?php echo $this->baseUrl() ?>/pages/?slug=<?php echo $module["slug"] ?>" title="<?php echo $module["title"] ?>"><?php echo $module["title"] ?></a></li>
+                <?php endforeach ?>
+            </ul>
+        </li>
+        <?php } ?>
+        
+        <li class="<?php echo ($resource == "medias") ? "active" : "" ?>"><a href="<?php echo $this->baseUrl() ?>/medias" title="Médias"><img src="<?php echo THEMES_TRANO_URL ?>images/icons/mainnav/dashboard.png" alt="" />Médias</a></li>
+
+        <li class="<?php echo ($resource == "seo") ? "active" : "" ?>"><a href="<?php echo $this->baseUrl() ?>/seo" title="SEO"><img src="<?php echo THEMES_TRANO_URL ?>images/icons/mainnav/dashboard.png" alt="" />SEO</a></li>
+
+        <li class="<?php echo ($resource == "visits") ? "active" : "" ?>"><a href="<?php echo $this->baseUrl() ?>/visits" title="Statistiques des visites"><img src="<?php echo THEMES_TRANO_URL ?>images/icons/mainnav/dashboard.png" alt="" />Statistiques des visites</a></li>
+
+        <li class="<?php echo ($resource == "contacts") ? "active" : "" ?>"><a href="<?php echo $this->baseUrl() ?>/contacts" title="Contacts"><img src="<?php echo THEMES_TRANO_URL ?>images/icons/mainnav/dashboard.png" alt="" />Contacts</a></li>
+
+        <?php 
+            $is_translation = false;
+            if( Application_Class_String::contains('/translations', $_SERVER['REQUEST_URI']) )
+                $is_translation = true;
+
+            $languages = Application_Model_Language::getLanguages(); 
+            if(!empty($languages)){ 
+        ?>
+        <li class="<?php echo ($is_translation) ? "active" : "" ?>">
+            <a href="javascript:void(0)" title="Catégories" class="expand" id="<?php echo ($is_translation) ? "current" : "" ?>"><img src="<?php echo THEMES_TRANO_URL ?>images/icons/mainnav/dashboard.png" alt="" />Traductions<strong><?php echo sizeof($languages) ?></strong></a>
+
+            <ul <?php echo ($is_translation) ? 'style="display: block"' : 'style="display: none"' ; ?> >
+                <?php foreach ($languages as $key => $value): ?>
+                    <li class="<?php echo ($resource == "translations" && $value["id"] == $id_lang ) ? "current" : "" ?>"><a href="<?php echo $this->baseUrl() ?>/translations/index/id/<?php echo $value["id"] ?>" title="<?php echo $value["title"] ?>"><?php echo $value["title"] ?></a></li>
+                <?php endforeach ?>
+            </ul>
+        </li>
+        <?php } ?>
+
+    </ul><!-- /standard nav -->
+
+</div>
+<!-- /left sidebar -->

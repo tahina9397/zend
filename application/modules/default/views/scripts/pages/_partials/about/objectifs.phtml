@@ -1,0 +1,24 @@
+<section class="services-section-two">
+    	<div class="auto-container">
+        	<!--Sec Title-->
+            <div class="sec-title centered">
+            	<?php /* ?><div class="title">Reasons to Help Us</div><?php */ ?>
+                <h2><?php echo $this->translate("Les objectifs de nos partenaires") ?></h2>
+            </div>
+            <div class="row clearfix">
+
+                <?php foreach ($this->objectifs as $objectif): ?>
+                    <!--Services Block Six-->
+                    <div class="services-block-six col-lg-4 col-md-4 col-sm-6 col-xs-12 aos-init aos-animate" data-aos="fade-in-up" data-aos-duration="700">
+                        <div class="inner-box">
+                            <div class="icon-box">
+                                <span class="icon <?php echo $objectif["icon"] ?>"></span>
+                            </div>
+                            <div class="text mt-30"><?php echo $objectif["title"] ?></div>
+                        </div>
+                    </div>
+                <?php endforeach ?>
+                
+            </div>
+        </div>
+    </section>

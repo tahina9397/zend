@@ -1,0 +1,109 @@
+<?php $id_item = Application_Class_Utils::idx($this->image, 'id', 0); ?>
+
+<div class="wrapper">
+    <?php echo Application_Class_Snippets::breadcrumb($this->translate("Images"), '/images'); ?>
+
+    <div class="page-header">
+        <div class="page-title">
+            <h2><?php echo $this->translate("Images"); ?></h2>
+        </div>
+    </div>
+
+    <div class="span12">
+    	<?php Application_Class_Snippets::multilingualTabs(); ?>
+
+        <form method="post" action="" id="images-form" class="form-horizontal form-to-validate">
+            <input type="hidden" value="<?php echo Application_Class_Utils::idx($this->image, 'id', ''); ?>" id="id" name="Images[id]">
+            <input type="hidden" value="<?php echo $this->module; ?>" id="module" name="Images[module]">
+            <input type="hidden" value="<?php echo $this->id_item; ?>" id="id_item" name="Images[id_item]">
+            <input type="hidden" value="<?php echo Application_Class_Utils::idx($this->image, 'order_item', ''); ?>" id="old_order_item" name="Images[old_order_item]">
+
+	    	<div class="row-fluid">
+		    	<div class="span12">
+				    <div class="widget row-fluid">
+					    <div class="well tab-form-content">
+					    	<div class="control-group">
+					    	    <label class="control-label" for="filename"> <?php echo $this->translate("Nom du fichier"); ?>:</label>
+					    	    <div class="controls" style="margin-top: 5px"><?php echo Application_Class_Utils::idx($this->image, 'filename', ''); ?></div>
+					    	</div>
+
+					    	<div class="control-group">
+					    	    <label class="control-label" for="legend"> <?php echo $this->translate("Légende"); ?>:</label>
+					    	    <div class="controls">
+					    	        <?php 
+					    	            $attributes = array(
+					    	                'classic' => array(
+					    	                    'id'            => 'legend'
+					    	                    ,'autocomplete' => 'off'
+					    	                )
+					    	                ,'custom' => array(
+					    	                    'class'        => 'span12 multilingual'
+					    	                    ,'module'      => 'Images'
+					    	                    ,'name'        => 'legend'
+					    	                    ,'data'        => $this->image
+					    	                )
+					    	            );
+					    	            Application_Class_Forms::textMultilingual($attributes); 
+					    	        ?>
+					    	    </div>
+					    	</div>
+
+					    	<div class="control-group">
+					    	    <label class="control-label" for="alt"> <?php echo $this->translate("Alt"); ?>:</label>
+					    	    <div class="controls">
+					    	        <?php 
+					    	            $attributes = array(
+					    	                'classic' => array(
+					    	                    'id'            => 'alt'
+					    	                    ,'autocomplete' => 'off'
+					    	                )
+					    	                ,'custom' => array(
+					    	                    'class'        => 'span12 multilingual'
+					    	                    ,'module'      => 'Images'
+					    	                    ,'name'        => 'alt'
+					    	                    ,'data'        => $this->image
+					    	                )
+					    	            );
+					    	            Application_Class_Forms::textMultilingual($attributes); 
+					    	        ?>
+					    	    </div>
+					    	</div>
+
+					    	<div class="control-group">
+					    	    <label class="control-label" for="order_item"> <?php echo $this->translate("Order item"); ?>:</label>
+					    	    <div class="controls">
+					    	        <select class="styled" id="order_item" name="Images[order_item]" style="opacity: 0;">
+					    	            <?php 
+					    	                $images = Application_Model_Image::getImages($this->id_item, $this->id);
+					    	                $options = array(
+					    	                    'atfirst' => array(
+					    	                        'value'  => 1
+					    	                        ,'title' => "At first"
+					    	                    )
+					    	                    ,'atend' => array(
+					    	                        'title' => "At end"   
+					    	                    )
+					    	                    ,'optgrouplabel' => "After"
+					    	                    ,'options'       => $images
+					    	                    ,'id_item'       => $this->id_item
+					    	                );
+					    	                Application_Class_Forms::optionsOrderItemImage($options); 
+					    	            ?>
+					    	        </select>
+					    	    </div>
+					    	</div>
+
+					    	<div class="form-actions">
+					    		<button id="save" class="btn btn-primary" type="button"><?php echo $this->translate("Enregistrer"); ?></button>
+					    		<button type="button" class="btn btn-danger ml5" onclick="window.location.href='/<?php echo $this->module; ?>/modify/do/edit/id/<?php echo $this->id_item; ?>'"><?php echo $this->translate("Retour"); ?></button>
+					    	</div>
+
+					   	</div>
+				   	</div>
+			    </div>
+			</div>
+        </form>
+
+        <div class="line mb60"></div>
+    </div>
+</div>

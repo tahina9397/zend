@@ -1,0 +1,44 @@
+<?php 
+    $products = Application_Model_Category::getCategoryByIdCategoryGroup($this->id_category_group) ;
+    array_multisort(array_column($products, 'title'), SORT_ASC, $products);
+    $category_permalink =  Zend_Controller_Front::getInstance()->getRequest()->getParam('category_permalink');
+    $getGroupById = Application_Model_Group::getGroupById($this->id_category_group,"large") ;
+
+?>
+
+<?php echo $this->partial("_partials/page-title.phtml",array("page" => str_replace("#title#", $this->category_title, $this->translate("Nos #title#")))) ?>
+
+<section class="fullwidth-section">
+	<div class="section-outer clearfix">
+    	<div class="image-column" style="background-image:url(<?php echo $getGroupById["cover"]["url"] ?>);">
+        	<div class="hidden-image"><img src="<?php echo $getGroupById["cover"]["url"] ?>" alt="<?php echo $getGroupById["title_".DEFAULT_LANG_ABBR] ?>"></div>
+        </div>
+        <div class="content-column">
+        	<div class="content">
+                <h2><?php echo $this->translate("Notre gamme") ?></h2>
+
+                <?php if (!empty($products)): 
+                    $tab_params["id_language"] = DEFAULT_LANG_ID ;
+                    $tab_params["resource"] = "products" ;
+                    $tab_params["action"] = "fiche" ;
+
+                    $getUrl = Application_Class_Url::getMultilingualUrl($tab_params) ;
+                ?>
+                    <div class="text links-widget">
+                        <ul class="links">
+                            <?php foreach ($products as $product): 
+                                $d = Application_Model_Page::getPageByCatId($product["id"],"large") ;
+
+                                $url = str_replace("#category_permalink#", $category_permalink, $getUrl) ;
+                                $url = str_replace("#permalink#", $d["category_permalink"], $url) ;
+                            ?>
+                                <li class="aos-init aos-animate" data-aos="fade-right" data-aos-duration="700"><strong><a href="<?php echo $url ?>" class="text-192e43"><?php echo $d["category_description"]; ?></a></strong></li>
+                            <?php endforeach ?>
+                        </ul>
+                    </div>
+                <?php endif ?>
+               
+            </div>
+        </div>
+	</div>
+</section>

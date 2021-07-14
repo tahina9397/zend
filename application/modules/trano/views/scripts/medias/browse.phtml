@@ -1,0 +1,61 @@
+<input type="hidden" id="id_item" name="id_item" value="<?php echo $this->id_item; ?>">
+<input type="hidden" id="module" name="module" value="<?php echo $this->module; ?>">
+<input type="hidden" id="type" name="type" value="<?php echo $this->type; ?>">
+
+<style type="text/css">
+    .span9{overflow-y: scroll;max-height: 500px}
+</style>
+
+<div class="outer">
+	<div class="inner">
+        <div class="page-header"><!-- Page header -->
+            <h5><i class="font-camera"></i>Mettre une image à la une</h5>
+        </div><!-- /page header -->
+        
+		<div class="body" style="padding-top: 0px">
+            <!-- Content container -->
+            <div class="row-fluid">
+                <div class="container">
+                    <div class="span9" style="overflow-x: ">
+                        <!-- Basic thumbnails -->
+                        <ul class="thumbnails gallery reorder-photos-list" style="text-align: left;margin-top: 20px">
+                            <?php 
+                            $media_id = NULL;
+                            if(!empty($this->medias)){
+                                foreach ($this->medias as $k => $media) {
+                                    $media_id = (int)$media['media_id'];
+                                    $media_url = Application_Model_Media::getUrlById($media_id);
+
+                                    $current = '';
+                                    if($k==0 && !$this->id_media){
+                                        $current = 'current';
+                                        $media_id_current = $media_id;
+                                    }
+                                    if($media_id==$this->id_media){
+                                        $current = 'current';
+                                        $media_id_current = $media_id;
+                                    }
+                            ?>
+                                        <li data-module="media" id="<?php echo $media_id; ?>" class=" <?php echo $current; ?>">
+                                            <a href="javascript:void(0);" style="float:none;" class="image_link thumbnail">
+                                                <div class="wrap" style="width: 135px;height: 135px;background: url(<?php echo $media_url ?>);background-size: cover">
+                                                </div>
+                                            </a>
+                                        </li>               
+                            <?php 
+                                    }
+                                } 
+                            ?>
+                        </ul>
+                        <!-- /basic thumbnails -->
+                    </div>
+
+                    <div class="span3 media-sidebar">
+                        <?php echo $this->partial("medias/sidebar/media_metas.phtml", array("media_id"=>$media_id_current)); ?>
+                    </div>
+                </div>
+                <!-- /content container -->
+            </div>
+        </div>
+    </div>
+</div>

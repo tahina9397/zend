@@ -1,0 +1,35 @@
+<!--Testimonial Section-->
+<section class="testimonial-section aos-init aos-animate" data-aos="fade-in-up" data-aos-duration="700">
+  <div class="auto-container">
+      <div class="row clearfix">
+          
+            <!--Column-->
+            <div class="title-column col-md-4 col-sm-12 col-xs-12">
+              <div class="quote"><span class="icon flaticon-double-quotes"></span></div>
+                <div class="sec-title">
+                  <?php /* ?><div class="title">What People Saying</div><?php */ ?>
+                    <h2><?php echo $this->translate("Les mots du fondateur") ?></h2>
+                </div>
+            </div>
+            <!--Column-->
+            <div class="column col-md-8 col-sm-12 col-xs-12">
+              <div class="single-item-carousel owl-theme owl-carousel">
+
+                  <?php foreach ($this->testimonials as $testimonial): ?>
+                    <!--Testimonial Block-->
+                    <div class="testimonial-block">
+                        <div class="inner-box">
+                            <div class="image"><img src="<?php echo $testimonial["cover"]["url"] ?>" alt="<?php echo $testimonial["title"] ?>" /></div>
+                              <div class="text"><?php echo $testimonial["text"] ?></div>
+                              <h4><?php echo $testimonial["title"] ?></h4>
+                          </div>
+                      </div>
+                  <?php endforeach ?>
+                
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!--End Testimonial Section-->

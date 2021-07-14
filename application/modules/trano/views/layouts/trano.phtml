@@ -1,0 +1,57 @@
+<?php  
+    $request = Zend_Controller_Front::getInstance()->getRequest();
+    $resource = $request->getControllerName();
+    $action  = $request->getActionName();
+
+    $version = Zend_Registry::get('version');
+?>
+    
+<!DOCTYPE html>
+<html lang="<?php echo DEFAULT_LANG_ABBR ?>" dir="ltr">
+    <head>
+        <?php /* ?>
+        <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-176728070-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "UA-176728070-2");
+        </script>
+        <?php */ ?>
+
+        <?php 
+            $site_name = Zend_Registry::get('option')->get('site_name');
+            $this->headTitle()->setSeparator(', ');
+            $this->headTitle($site_name." - Backoffice");
+            echo $this->headTitle() . "\n";
+        ?>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="robots" content="nofollow,noindex">
+
+        <?php 
+            echo $this->render("statics/header-scripts.phtml");
+            echo $this->headLink();
+            echo $this->headScript();
+            echo $this->render('partial/phpjs.phtml'); 
+            echo $this->render('statics/favicon.phtml'); 
+        ?>
+
+    </head>
+
+    <body>
+        <?php 
+            echo $this->render("statics/header.phtml");
+            echo "<div class='wrapper'>";
+            echo $this->render("statics/sidebar.phtml");
+            echo $this->layout()->content;
+            // echo $this->render("statics/footer.phtml");
+            echo $this->render("statics/inline-scripts.phtml");
+            echo $this->inlineScript();
+            echo "</div>";
+        ?>
+    </body>
+</html>

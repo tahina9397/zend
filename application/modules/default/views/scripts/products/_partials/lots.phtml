@@ -1,0 +1,24 @@
+<!--FullWidth Section-->
+<section class="fullwidth-section aos-init aos-animate" data-aos="zoom-in-up" data-aos-duration="700">
+	<div class="section-outer clearfix">
+    	<div class="image-column" style="background-image:url(<?php echo THEMES_DEFAULT_URL ?>images/natural-cosmetics.jpg);">
+        	<div class="hidden-image"><img src="<?php echo THEMES_DEFAULT_URL ?>images/natural-cosmetics.jpg" alt=""></div>
+        </div>
+        <div class="content-column">
+        	<div class="content">
+                <div class="text links-widget">
+                    <h2><?php echo $this->translate("Lots") ?></h2>
+                    <ul class="">
+                    	<?php foreach ($this->lots as $key => $lot): ?>
+                    		<li class="aos-init aos-animate" data-aos="fade-right" data-aos-duration="700">
+                                <span><?php echo $lot["filename"] ?></span>
+                                (<a href="<?php echo $lot["path"] ?>" class="text-192e43" download>&nbsp;<?php echo $this->translate("Télécharger") ?>&nbsp;</a>)
+                            </li>
+                    	<?php endforeach ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>
+<!--End FullWidth Section-->

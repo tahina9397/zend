@@ -1,0 +1,28 @@
+<section class="team-section">
+    <div class="auto-container">
+
+        <div class="sec-title centered">
+            <?php /* ?><div class="title">Reasons to Help Us</div><?php */ ?>
+            <h2><?php echo $this->translate("Nos équipes") ?></h2>
+        </div>
+
+        <div class="row clearfix">
+            
+            <?php foreach ($this->teams as $team): ?>
+                <!--Team Member-->
+                <div class="team-member col-md-4 col-sm-6 col-xs-12 aos-init aos-animate" data-aos="fade-right" data-aos-duration="700">
+                    <div class="inner-box">
+                        <div class="image">
+                            <img src="<?php echo $team["cover"]["url"] ?>" alt="<?php echo $team["title"] ?>">
+                        </div>
+                        <div class="content">
+                            <h3><?php echo $team["title"] ?></h3>
+                            <?php /* ?><div class="designation">Founder</div><?php */ ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
+
+        </div>
+    </div>
+</section>

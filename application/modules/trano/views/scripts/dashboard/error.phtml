@@ -1,0 +1,41 @@
+<!-- Content wrapper -->
+<div class="wrapper">
+<div class="crumbs">
+  <ul id="breadcrumbs" class="breadcrumb"> 
+      <li><a href=""><?php echo $this->translate("Tableau de bord"); ?></a></li>
+      <li class="active"><a href="/dashboard/error"><?php echo $this->translate("Accès interdit"); ?></a></li>
+  </ul>    
+  <ul class="breadcrumb-right">
+      <li><a target="_blank" href="/" title="<?php echo $this->translate("Visiter le site")?>"><i class="icon-home"></i><span><?php echo $this->translate("Visiter le site")?></span></a></li>
+      <li><a href="/users" title="<?php echo $this->translate("Utilisateurs");?>"><i class="icon-user"></i>			<span><?php echo $this->translate("Utilisateurs")?></span></a></li>
+			<li><a href="/siteconfiguration" title="<?php echo $this->translate("Configuration du site")?>"><i class="icon-cogs"></i><span><?php echo $this->translate("Configuration du site")?></span></a></li>
+      </ul>      
+  </ul>
+</div> 
+<!-- Page header -->
+    <div class="page-header">
+    	<div class="page-title">
+	    	<h2><?php echo $this->translate("Accès interdit"); ?></h2>
+    	</div>
+    </div>
+    <!-- /page header -->
+
+<div class="span12">
+<!-- Error wrapper -->
+<div class="error-page">
+    <span class="reason">403</span>
+    <div class="error-content">
+        <span class="reason-title">- Désolé, la page que vous tenter d'y accéder est interdite d'accès, veuillez contacter l'administrateur -</span>
+
+        <div class="row-fluid error-buttons">
+            <a href="/dashboard" title="" class="btn btn-info span6">Revenir vers le tableau de bord</a>
+            <a href="/" target="_blank" title="" class="btn btn-success span6">Visiter le siteweb</a>
+        </div>
+    </div>
+</div>  
+<!-- /error wrapper -->
+</div>
+</div>
+<style>
+.error-page{ position:relative; margin-top:inherit!important; top:inherit!important}
+</style>

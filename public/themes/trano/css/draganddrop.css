@@ -1,0 +1,48 @@
+.btn.outlined {color: #3675B4;border: solid 2px #3675B4;border-radius: 3px;text-transform: uppercase;background: #fff;font-size: 18px}
+button, html input[type=button], input[type=reset], input[type=submit] {-webkit-appearance: button;cursor: pointer;overflow: visible}
+.mleft_no{margin-left: 0}
+
+.gallery-image-view{ width:100%; float:left; margin: 20px 0}
+.gallery-image-view ul{ margin:0; padding:0; list-style-type:none}
+.gallery-image-view ul li{ float:left; margin:0px 15px 15px 0px; background:none; width:auto; height:auto; border: none!important; position: relative;}
+.gallery-image-view ul li.cover > a{background-color: #fccac1;border: 1px solid #e18b7c}
+.gallery-image-view ul li.current > a{background-color: #389ebc!important;border: 1px solid #007FA5!important;}
+.gallery-image-view ul li > a:hover{background-color: #389ebc!important}
+.gallery-image-view ul li > a {background: #fff;display: inline-block;outline: none;position: relative;vertical-align: bottom;border: 1px #bbb solid;padding: 3px}
+.gallery-image-view ul li > a .wrap {position: relative;overflow: hidden}
+.gallery-image-view ul li > a .wrap i {height: 136px;width: 136px;background-size: cover;background-color: transparent;position: relative;z-index: 2;background-position: center 25%;background-repeat: no-repeat;display: block}
+.gallery-image-view ul li .actions {background: #000!important;position: absolute;top: 0px;right: 0px;display: none;padding: 0px 2px 0px 5px!important;z-index: 999}
+.gallery-image-view ul li .actions a:first-child{padding-right: 0}
+.gallery-image-view ul li .actions a{color: #fff;font-size: 11px;display: block;padding: 4px 5px 3px 0!important;float: left;cursor: pointer;}
+
+#reorder-btn{margin: 18px 15px}
+#reorder-helper{margin: 18px 15px;padding: 10px}
+.light_box {background: #efefef;padding: 20px;margin: 10px 0;text-align: center;font-size: 1.2em}
+
+/* NOTICE */
+.notice, .notice a{color: #fff !important}
+.notice{z-index: 8888}
+.notice a{font-weight: bold}
+.notice_error{background: #E46360}
+.notice_success{background: #657E3F}
+
+.images-list{background-color:#fff; padding:1.5% 1.5% 0px 1.5%;}
+.images-edit{width: 28%;margin-left: 0px!important; padding: 1.5% 1.4%;background-color:#fff;border-left: 1px solid #cdcdcd}
+
+.widgets {height: 100%;background-color: #fff}
+.bg-white{background-color: #fff}
+.display-table{display: table}
+.display-table-row{display: table-row}
+.display-table-cell{display: table-cell}
+.widget.display-table{position: relative;width: 99.9%}
+
+.images-edit div#images-form .formRow {border-bottom: 1px solid #E2E2E2;border-top: 1px solid white;clear: both;padding: 22px 0 22px 14px!important;position: relative}
+.images-edit div#images-form div.selector{margin-left: 18px!important; width: 53%!important; max-width: 53%!important}
+.images-edit div#images-form div.selector span{width: 96%!important; text-align: left!important}
+.images-edit div#images-form input[type=text], .images-edit div#images-form input[type=password], .images-edit div#images-form textarea, .images-edit div#images-form select{margin-left: 18px!important; width: 67%!important; max-width: 67%!important}
+.images-edit div#images-form div.selector select{width: 100%!important;top: 5px!important}
+html .images-edit ul.tabs li.activeTab a{background-color: #fff!important}
+
+#updatePhoto{cursor: pointer!important}
+p.noimage{padding: 20px!important}
+.images-edit{min-height: 400px}

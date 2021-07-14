@@ -1,0 +1,37 @@
+<!-- Main content -->
+<div class="content">
+    <h3 class="text-light">Catégories</h3>
+
+    <div class="outer">
+        <div class=" align-cener">
+            <a href="javascript:void(0)" class="btn btn-primary" onclick="window.location.href='/categories/modify/?do=add'" title="Ajouter"><i class="font-plus"></i>Ajouter</a>
+            <a href="javascript:void(0)" class="btn btn-danger massdelete" data-resource_type="categories" title="Supprimer"><i class="font-trash"></i>Supprimer</a>
+        </div>
+
+    </div>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+            <div class="well" >
+                <table class="table table-condensed" id="data-table">
+                    <thead>
+                        <tr>
+                            <th width="2%"><input type="checkbox" class="styled" id="checkAll" name="checkAll" /></th>
+                            <th>Titre</th>
+                            <th>Groupes</th>
+                            <th width="20%">Date de modification</th>
+                            <th width="10%"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="text-center">Chargement des données</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /main content -->

@@ -1,0 +1,9 @@
+<!-- Search -->
+<div class="sidebar-widget search-box">
+	<form method="get" action="<?php echo Application_Class_Url::getMultilingualUrl(array("id_language" => DEFAULT_LANG_ID,"resource" => "news","action" => "index")) ; ?>">
+        <div class="form-group">
+            <input type="search" name="q" value="<?php echo Zend_Controller_Front::getInstance()->getRequest()->getParam('q'); ?>" placeholder="<?php echo $this->translate("Votre recherche") ?>">
+            <button type="submit"><span class="icon fa fa-search"></span></button>
+        </div>
+    </form>
+</div>

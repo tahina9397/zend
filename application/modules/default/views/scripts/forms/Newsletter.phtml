@@ -1,0 +1,14 @@
+<form class="validate-ajax" action="<?php echo $this->escape($this->element->getAction()); ?>" method="<?php echo $this->escape($this->element->getMethod()); ?>" id="<?php echo $this->element->getId(); ?>">
+
+  <?php 
+      echo $this->element->identifier;
+      echo $this->element->csrf; 
+  ?>
+
+  <div class="form-group">
+    <?php echo $this->element->email ?>
+      <button type="submit" class="theme-btn btn-style-two ladda-button" data-spinner-color="#fff" data-style="zoom-in" data-size="xs">
+      <?php echo strtoupper($this->translate("S'inscrire")) ?>
+      </button>
+  </div>
+</form>

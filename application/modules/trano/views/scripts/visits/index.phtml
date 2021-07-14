@@ -1,0 +1,133 @@
+<?php 
+    $years_months = Application_Model_Visit::getYearsMonths();
+    $years = Application_Model_Visit::getYears();
+?>
+
+<!-- Main content -->
+<div class="content">
+    <h3 class="text-light">Statistiques des visites</h3>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+            <div class="tabbable"><!-- default tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab"><?php echo $this->translate("Journalière"); ?></a></li>
+                    <li><a href="#tab2" data-toggle="tab"><?php echo $this->translate("Mensuelle"); ?></a></li>
+                    <li><a href="#tab3" data-toggle="tab"><?php echo $this->translate("Annuelle"); ?></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <div class="mb30">
+                            <select name="select2" class="styled span12" onChange="refreshDailyVisits(this.value);">
+                                <?php 
+                                if(!empty($years_months["data"])){
+                                    foreach ($years_months["data"] as $k => $month) {
+                                        $selected = ($month['current_year_month']==1) ? 'selected="selected"' : '';
+                                        echo '<option '.$selected.' value="'.$month['date'].'">'.$month['name'].'</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="table-overflow mt-25px">
+                            <table id="daily" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="50%"><?php echo $this->translate("Jour"); ?></th>
+                                        <th width="50%"><?php echo $this->translate("Nombre de visite"); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    $daily_visits = Application_Model_Visit::getDailyVisits($years_months["current_year_month_value"]);
+                                    if(!empty($daily_visits)){
+                                        foreach ($daily_visits as $k => $dv) {
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $dv["jour"]; ?></td>
+                                                <td><?php echo $dv["stats_visits"]; ?></td>
+                                            </tr>
+                                    <?php 
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab2">
+                        <div class="mb30">
+                            <select name="select2" class="styled span12" onChange="refreshMonthlyVisits(this.value);">
+                                <?php 
+                                if(!empty($years["data"])){
+                                    foreach ($years["data"] as $k => $year) {
+                                        $selected = ($year['current_year']==1) ? 'selected="selected"' : '';
+                                        echo '<option '.$selected.' value="'.$year['date'].'">'.$year['date'].'</option>';
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="table-overflow mt-25px">
+                            <table id="monthly" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="50%"><?php echo $this->translate("Mois"); ?></th>
+                                        <th width="50%"><?php echo $this->translate("Nombre de visite"); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    $monthly_visits = Application_Model_Visit::getMonthlyVisits($years["current_year_value"]);
+                                    if(!empty($monthly_visits)){
+                                        foreach ($monthly_visits as $k => $mv) {
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $mv["mois_nom"]; ?></td>
+                                                <td><?php echo $mv["stats_visits"]; ?></td>
+                                            </tr>
+                                    <?php 
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab3">
+                        <div class="table-overflow">
+                            <table id="annually" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="50%"><?php echo $this->translate("Année"); ?></th>
+                                        <th width="50%"><?php echo $this->translate("Nombre de visite"); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    $annual_visits = Application_Model_Visit::getAnnualVisits();
+                                    if(!empty($annual_visits)){
+                                        foreach ($annual_visits as $k => $av) {
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $av["annee"]; ?></td>
+                                                <td><?php echo $av["stats_visits"]; ?></td>
+                                            </tr>
+                                    <?php 
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /main content -->

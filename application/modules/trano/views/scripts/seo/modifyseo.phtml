@@ -1,0 +1,103 @@
+<?php $id_item = Application_Class_Utils::idx($this->seo, 'id', 0); ?>
+
+<!-- Main content -->
+<div class="content">
+    <h3 class="text-light">S.E.O</h3>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+
+            <form method="post" action="" id="Nearby-form" class="form-horizontal form-to-validate">
+                <input type="hidden" value="<?php echo Application_Class_Utils::idx($this->seo, 'id', ''); ?>" id="id" name="Seo[id]">
+
+                <div class="row-fluid">
+                    <div class="span9">
+                        <div class="">
+                            <div class="box">
+                                <div class="tabbable"><!-- multilingual tabs -->
+                                    <?php Application_Class_Snippets::multilingualTabs(); ?>
+
+                                    <div class="box">
+                                        <div class="well tab-form-content">
+                                            <div class="control-group">
+                                                <label class="control-label" for="page">&nbsp;Page:</label>
+                                                <div class="controls">
+                                                    <input type="text" id="page" autocomplete="off" placeholder="<?php echo $this->translate("Page"); ?>" class="validate[required] span12" name="Seo[page]" value="<?php if($this->do == "edit") {echo $this->seo['page'];} ?>" style="">
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="page_notes">&nbsp;Pages notes:</label>
+                                                <div class="controls">
+                                                    <textarea type="text" id="page_notes" autocomplete="off" placeholder="<?php echo $this->translate("Page notes"); ?>" class="validate[required] span12" name="Seo[page_notes]" style=""><?php if($this->do == "edit") {echo $this->seo['page_notes'];} ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>  
+
+                                    <div class="mt-25px"></div>
+
+                                    <?php Application_Class_Forms::boxSeo('Seo', $this->seo); ?>
+                                </div><!-- end multilingual tabs -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span3">
+                        <div class="well">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <h6><?php echo $this->translate("Publier"); ?></h6>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <button class="btn btn-primary" type="submit"><?php echo $this->translate("Enregistrer"); ?></button>
+                                <button type="button" class="btn btn-danger ml5" onclick="window.location.href = '/seo'"><?php echo $this->translate("Retour"); ?></button>
+                            </div>
+                        </div>
+
+                        <?php if ($this->do == 'edit'): ?>
+                            <div class="well mt-25px"> 
+                                <div class="navbar"> 
+                                    <div class="navbar-inner"> 
+                                        <h6>Image à la Une</h6> 
+                                    </div> 
+                                </div> 
+                                <div class="control-group">
+                                     <div class="cover">
+                                        <?php
+                                        $cover_photo = Application_Model_Media::getCover("metas", $id_item); ?>
+
+                                        <?php if ($cover_photo): ?>
+                                            <div class="input-append" style="width:75%;margin-bottom:10px">
+                                                <input id="appendedInputButton" class="span12 input-block-level" type="text" value="<?php echo $cover_photo ?>" readonly>
+                                                <a class="btn" href="<?php echo $cover_photo ?>" target="_blank">Voir</a>
+                                            </div>
+                                        <?php endif ?>
+
+                                        <div class="clearfix"></div> 
+
+                                        <?php 
+                                            $id_media = Application_Model_Media::getCoverIdMedia("metas", $id_item);
+                                            if ($cover_photo) {
+                                                echo $this->partial("medias/sidebar/cover_photo.phtml", array("id_media" => $id_media, "id_item" => $id_item, "type" => "cover", "module" => "metas"));
+                                            } else {
+                                                echo $this->partial("medias/sidebar/add_cover.phtml", array("id_media" => 0, "id_item" => $id_item, "type" => "cover", "module" => "metas"));
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif ?>
+
+                    </div>
+                </div>
+
+                <div class="mb60"></div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+<!-- /main content -->

@@ -1,0 +1,24 @@
+<!--Blog Category Widget-->
+<?php 
+	$getDateDiff = Application_Class_Date::getDateDiff("2021-04",date("Y-m")) ;
+
+	for ($i=1; $i <= $getDateDiff["months"] ; $i++) { 
+		$d = date("Y-m",strtotime(str_replace("#var#",$i, "-#var# month")));
+		if (date("Y",strtotime($d)) == date("Y")) {
+			$tabs[] = date("Y-m",strtotime(str_replace("#var#",$i, "-#var# month")));
+		}
+	}
+?>
+
+<?php if (!empty($tabs)): ?>
+	<div class="sidebar-widget sidebar-blog-category">
+	    <div class="sidebar-title">
+	        <h2><?php echo $this->translate("Archives") ?></h2>
+	    </div>
+	    <ul class="blog-cat">
+	    	<?php foreach ($tabs as $key => $value): ?>
+	        	<li><a href="<?php echo Application_Class_Url::getMultilingualUrl(array("id_language" => DEFAULT_LANG_ID,"resource" => "news","action" => "index"))."/?d=".$value ?>"><?php echo Application_Class_Date::formatfromMysql($value) ?></a></li>
+	    	<?php endforeach ?>
+	    </ul>
+	</div>
+<?php endif ?>

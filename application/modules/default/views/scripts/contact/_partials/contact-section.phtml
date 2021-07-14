@@ -1,0 +1,89 @@
+<?php 
+    $option = Zend_Registry::get("option") ;
+?>
+
+<!--Contact Section-->
+<section class="contact-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            
+            <!--Form Column-->
+            <div class="form-column col-md-7 col-sm-12 col-xs-12">
+                <div class="column-inner">
+                <div class="text">
+                    <?php 
+                        $t = $this->translate("Vous êtes curieux, vous souhaitez avoir plus d’informations sur notre société et nos épices, nous vous invitons à nous contacter par #email#, par #phone#, ou via ce #form#. Nous ne manquerons pas de vous répondre dans les plus brefs délais.") ;
+                        $t = str_replace("#email#", "<strong>".$this->translate("email")."</strong>", $t) ;
+                        $t = str_replace("#phone#", "<strong>".$this->translate("téléphone")."</strong>", $t) ;
+                        $t = str_replace("#form#", "<strong>".$this->translate("formulaire de contact")."</strong>", $t) ;
+
+                        echo $t ;
+                    ?>
+                </div>
+
+
+                     <?php /* ?>
+                    <div class="sec-title">
+                       <div class="title"><?php echo $this->translate("Prenez contact avec nous") ?></div>
+                        <h2><?php echo $this->translate("Formulaire de contact") ?></h2>
+                    </div>
+                    <?php */ ?>
+                
+                    <!-- Contact Form -->
+                    <div class="contact-form mt-40">
+                        <!--Comment Form-->
+                        <?php echo $this->contact_form ?>
+                    </div>
+                    <!--End Comment Form -->
+                </div>
+            </div>
+            
+            <!--Info Column-->
+            <div class="info-column col-md-5 col-sm-12 col-xs-12 hidden-xs hidden-sm">
+                <ul class="list-style-one">
+                    <li>
+                        <span class="icon flaticon-pin"></span>
+                        <h3><?php echo $this->translate("Adresse") ?></h3>
+                        <div class="text-info"><?php echo $option->address ?></div>
+                    </li>
+                    <li>
+                        <span class="icon flaticon-e-mail-envelope"></span>
+                        <h3><?php echo $this->translate("Email") ?></h3>
+                        <div class="text-info"><?php echo str_replace("@", "[@]", $option->company_email) ?></div>
+                    </li>
+                    <li>
+                        <span class="icon flaticon-technology-1"></span>
+                        <h3><?php echo $this->translate("Téléphone") ?></h3>
+                        <div class="text-info"><?php echo $option->phone_number ?></div>
+                    </li>
+
+                    <?php /* ?>
+                    <li>
+                        <span class="icon flaticon-earth-grid-symbol"></span>
+                        <h3>Website</h3>
+                        <div class="text-info">www . greenwaycorp . org</div>
+                    </li>
+                    <?php */ ?>
+                </ul>
+                <!--Social Icon Three-->
+                <ul class="social-icon-three">
+                    <li><a href="<?php echo $option->company_link_facebook ?>" target="_blank"><span class="fa fa-facebook"></span></a></li>
+
+                    <?php if (!empty($option->company_link_twitter)): ?>
+                      <li><a href="<?php echo $option->company_link_twitter ?>" target="_blank"><span class="fa fa-twitter"></span></a></li>
+                    <?php endif ?>
+
+                    <?php if (!empty($option->company_link_google_plus)): ?>
+                      <li><a href="<?php echo $option->company_link_google_plus ?>" target="_blank"><span class="fa fa-google-plus"></span></a></li>
+                    <?php endif ?>
+
+                    <?php if (!empty($option->company_link_instagram)): ?>
+                      <li><a href="<?php echo $option->company_link_instagram ?>" target="_blank"><span class="fa fa-instagram"></span></a></li>
+                    <?php endif ?>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!--End Contact Section-->

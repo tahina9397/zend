@@ -1,0 +1,23 @@
+<?php 
+  	echo $this->partial("_partials/page-title.phtml",array("page" => $this->translate("Qualité"))) ;
+
+  	if (!empty($this->contents)) {
+  		foreach ($this->contents as $k => $data) {
+  			if ($k == 0) {
+		      	echo $this->partial("pages/_partials/quality/section-1.phtml",array("content" => $data)) ;
+  			}
+  			else{
+	      		$phtml = ($k % 2 == 1) ? "right-image.phtml" : "left-image.phtml" ;
+		      	echo $this->partial("pages/_partials/quality/fullwidth-section/".$phtml,array("content" => $data)) ;
+  			}
+	    }
+	}
+
+ 	if (!empty($this->partenaires)) {
+		echo $this->partial("pages/_partials/quality/section-3.phtml",array("partenaires" => $this->partenaires)) ;
+	}
+
+ 	if (!empty($this->products)) {
+		echo $this->partial("pages/_partials/quality/section-4.phtml",array("products" => $this->products)) ;
+	}
+?>

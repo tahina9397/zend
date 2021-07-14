@@ -1,0 +1,128 @@
+<?php 
+$id = $this->media_id;
+$media_data = Application_Model_Media::getMediaData($id);
+$media_width     = $media_data['width'];
+$media_height    = $media_data['height'];
+$media_filesize  = $media_data['filesize'];
+$media_extension = Application_Model_Media::getMediaExtension($id);
+$media_url       = Application_Model_Media::getUrlById($id);
+$media_infos     = Application_Model_Media::get($id);
+$media           = Application_Model_Media::getMultilingualById($id);
+?>
+<div data-id="<?php echo $id; ?>" class="attachment-details">
+    <input type="hidden" id="media_id" name="media_id" value="<?php echo $id; ?>">
+
+    <h3><?php echo $this->translate("Détails du fichier attaché"); ?></h3>
+    <div class="attachment-info">
+        <div class="thumbnail thumbnail-image">
+            <i style="background-image:url(<?php echo $media_url; ?>)"></i>
+        </div>
+        <div class="details">
+            <div class="filename"><?php echo $media_infos["filename"]; ?></div>
+            <div class="uploaded"><?php echo Application_Class_Date::formatfromMysql($media_infos['create_date']); ?></div>
+            <div class="file-size"><?php echo $media_filesize; ?></div>
+            <div class="dimensions"><?php echo $media_width; ?> × <?php echo $media_height; ?></div>
+            <?php /* ?><a class="delete-attachment" href="#"><?php echo $this->translate("Supprimer définitivement"); ?></a><?php */ ?>
+        </div>
+    </div>
+
+    <form id="mediaInfos">
+        <input type="hidden" name="Medias[id]" value="<?php echo $id; ?>">
+        <?php Application_Class_Snippets::multilingualTabs(); ?>
+
+        <div class="widget row-fluid" style="margin-top:-32px">
+            <div class="well tab-form-content">
+                <div class="control-group">
+                    <label class="control-label" for="title"><span class="text-error">*</span> <?php echo $this->translate("Titre"); ?>:</label>
+                    <div class="controls" style="margin-top: 5px">
+                        <?php 
+                            $attributes = array(
+                                'classic' => array(
+                                    'id'            => 'title'
+                                    ,'autocomplete' => 'off'
+                                )
+                                ,'custom' => array(
+                                    'class'        => 'validate[required] span12 multilingual'
+                                    ,'module'      => 'Medias'
+                                    ,'name'        => 'title'
+                                    ,'data'        => $media
+                                )
+                            );
+                            Application_Class_Forms::textMultilingual($attributes); 
+                        ?>
+                    </div>
+                </div>                         
+
+                <div class="control-group">
+                    <label class="control-label" for="caption"> <?php echo $this->translate("Légende"); ?>:</label>
+                    <div class="controls">
+                        <?php 
+                            $attributes = array(
+                                'classic' => array(
+                                    'autocomplete' => 'off'
+                                    ,'rows'        => 4
+                                )
+                                ,'custom' => array(
+                                    'id'           => 'caption'
+                                    ,'class'       => 'span12 multilingual'
+                                    ,'module'      => 'Medias'
+                                    ,'name'        => 'caption'
+                                    ,'data'        => $media
+                                )
+                            );
+                            Application_Class_Forms::textareaMultilingual($attributes);
+                        ?>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="alt"> <?php echo $this->translate("Texte alternatif"); ?>:</label>
+                    <div class="controls">
+                        <?php 
+                            $attributes = array(
+                                'classic' => array(
+                                    'id'            => 'alt'
+                                    ,'autocomplete' => 'off'
+                                )
+                                ,'custom' => array(
+                                    'class'        => 'span12 multilingual'
+                                    ,'module'      => 'Medias'
+                                    ,'name'        => 'alt'
+                                    ,'data'        => $media
+                                )
+                            );
+                            Application_Class_Forms::textMultilingual($attributes); 
+                        ?>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="description"> <?php echo $this->translate("Description"); ?>:</label>
+                    <div class="controls">
+                        <?php 
+                            $attributes = array(
+                                'classic' => array(
+                                    'autocomplete' => 'off'
+                                    ,'rows'        => 4
+                                )
+                                ,'custom' => array(
+                                    'id'           => 'description'
+                                    ,'class'       => 'span12 multilingual'
+                                    ,'module'      => 'Medias'
+                                    ,'name'        => 'description'
+                                    ,'data'        => $media
+                                )
+                            );
+                            Application_Class_Forms::textareaMultilingual($attributes); 
+                        ?>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button id="saveBtn" class="btn btn-primary" type="button"><?php echo $this->translate("Enregistrer"); ?></button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

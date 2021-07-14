@@ -1,0 +1,113 @@
+<?php 
+	$options = $this->options ;
+?>
+
+<!-- Main content -->
+<div class="content">
+    <h3 class="text-light">Configuration du site</h3>
+
+	<div class="outer">
+    	<div class="inner">
+            <div class="page-header"><!-- Page header -->
+                <h5>Configuration du site</h5>
+            </div><!-- /page header -->
+            
+            <div class="<?php /* echo "body" */ ?>">
+    		    <form method="post" action="" id="configure-form" class="form-horizontal form-to-validate">
+    		    	<input type="hidden" value="1" id="id" name="Option[id]">
+
+    		    	<div class="row-fluid">
+    		    		<div class="span12">
+    					    <div class="widget">
+    						    <div class="well">
+    						    	<?php /* ?>
+    						    	<div class="control-group">
+    						            <label class="control-label" for="company"><span class="text-error">*</span> Société:</label>
+    						            <div class="controls"><input type="text" class="validate[required] span12" value="<?php echo $options['company']; ?>" id="company" name="Option[company]" /></div>
+    						        </div>			
+    						        <?php */ ?>
+    					        	<div class="control-group">
+    					                <label class="control-label" for="site_name"><span class="text-error">*</span> Nom du site:</label>
+    					                <div class="controls"><input type="text" class="validate[required] span12" value="<?php echo $options['site_name']; ?>" id="site_name" name="Option[site_name]" /></div>
+    					            </div>				    	
+
+    						    	<div class="control-group">
+    						            <label class="control-label" for="company_site"><span class="text-error">*</span> Website:</label>
+    						            <div class="controls"><input type="text" class="validate[required] span12" value="<?php echo $options['company_site']; ?>" id="company_site" name="Option[company_site]" /></div>
+    						        </div>
+
+    						        <div class="control-group">
+    						            <label class="control-label" for="address"><span class="text-error">*</span> Adresse:</label>
+    						            <div class="controls"><input type="text" class="validate[required] span12" value="<?php echo $options['address']; ?>" id="address" name="Option[address]" /></div>
+    						        </div>
+
+    						        <div class="control-group">
+    						            <label class="control-label" for="phone_number"><span class="text-error">*</span> Téléphone:</label>
+    						            <div class="controls"><input type="text" class="validate[required] span12" value="<?php echo $options['phone_number']; ?>" id="phone_number" name="Option[phone_number]" /></div>
+    						        </div>
+
+    					        	<div class="control-group">
+    					                <label class="control-label" for="company_email"><span class="text-error">*</span> Email:</label>
+    					                <div class="controls"><input type="text" class="validate[required,custom[email]] span12" value="<?php echo $options['company_email']; ?>" id="company_email" name="Option[company_email]" /></div>
+    					            </div>
+
+    				            	<div class="control-group">
+    				                    <label class="control-label" for="company_link_facebook"><span class="text-error">*</span> Lien Facebook:</label>
+    				                    <div class="controls"><input type="text" class="validate[required] span12" value="<?php echo $options['company_link_facebook']; ?>" id="company_link_facebook" name="Option[company_link_facebook]" /></div>
+    				                </div>
+
+                                    <?php /* ?>
+                                    <div class="control-group">
+                                        <label class="control-label" for="company_link_twitter"> Lien Twitter:</label>
+                                        <div class="controls"><input type="text" class="span12" value="<?php echo $options['company_link_twitter']; ?>" id="company_link_twitter" name="Option[company_link_twitter]" /></div>
+                                    </div>
+
+                                     <div class="control-group">
+                                        <label class="control-label" for="company_link_google_plus"> Lien Google Plus:</label>
+                                        <div class="controls"><input type="text" class="span12" value="<?php echo $options['company_link_google_plus']; ?>" id="company_link_google_plus" name="Option[company_link_google_plus]" /></div>
+                                    </div>
+
+                                     <div class="control-group">
+                                        <label class="control-label" for="company_link_instagram"> Lien Instagram:</label>
+                                        <div class="controls"><input type="text" class="span12" value="<?php echo $options['company_link_instagram']; ?>" id="company_link_instagram" name="Option[company_link_instagram]" /></div>
+                                    </div>
+                                    <?php */ ?>
+
+    			                	<div class="control-group">
+    			                        <label class="control-label" for="allowed_ips"><span class="text-error">*</span> IPs autorisés:</label>
+    			                        <div class="controls"><input type="text" class="validate[required] span12" value="<?php echo $options['allowed_ips']; ?>" id="allowed_ips" name="Option[allowed_ips]" /></div>
+    			                    </div>
+
+    		   				    	<div class="control-group">
+    	   				            	<input type="hidden" name="Option[mode_maintenance][]" value="0">
+    		   				    		
+    		   				            <label class="control-label" for="mode_maintenance"> Mode maintenance:</label>
+    		   				            <div class="controls">
+    				            			<select class="styled span12" name="Option[mode_maintenance]">
+    		                                    <option value="0" <?php echo ($options['mode_maintenance']==0) ? 'selected="selected"' : '' ; ?>>
+    		                                    	<?php echo $this->translate('Non'); ?>
+    		                                    </option>
+    		                                    
+    		                                    <option value="1" <?php echo ($options['mode_maintenance']==1) ? 'selected="selected"' : '' ; ?>>
+    		                                    	<?php echo $this->translate('Oui'); ?>
+    		                                    </option>
+    		                            	</select>
+    		   				            </div>
+    		   				        </div>
+
+    		   				        <div class="form-actions">
+    		   				            <button class="btn btn-primary" type="submit"><?php echo $this->translate("Enregistrer"); ?></button>
+    		   				        </div>
+    						   	</div>
+    					   	</div>
+    				   	</div>
+    			   	</div>
+
+    			    <div class="mb30"></div>
+    		    </form>
+                <?php echo $this->form ?>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /main content -->

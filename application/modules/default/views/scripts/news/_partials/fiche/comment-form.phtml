@@ -1,0 +1,8 @@
+<!--Comment Form-->
+<div class="comment-form">
+	<div class="group-title"><h2><?php echo $this->translate("Laisser votre commentaire") ?></h2></div>
+	<?php 
+        $comment_form = new Application_Form_Comments(array("id_new" => $this->id_new)) ;
+        echo $comment_form ;
+    ?>
+</div>

@@ -1,0 +1,31 @@
+<?php if (!empty($this->paginator)): ?>
+    <?php foreach ($this->paginator as $comment): ?>
+        <div class="comment-box">
+            <div class="comment">
+                <div class="author-thumb">
+                    <img class="__initial__" src="" data-name="<?php echo $comment["author_name"] ?>" alt="<?php echo $comment["author_name"] ?>" width="70" height="70">
+                </div>
+                <div class="comment-inner">
+                    <div class="comment-info clearfix">
+                        <strong><?php echo $comment["author_name"] ?></strong>
+                        <div class="comment-time">
+                            <?php 
+                                $t = $this->translate("Publié le #date_publication# à #time#") ;
+                                $t = str_replace("#date_publication#", $comment["publication_date"], $t) ; 
+                                $t = str_replace("#time#", $comment["create_time"], $t) ;
+                                echo $t ; 
+                            ?>
+                        </div>
+                    </div>
+                    <div class="text"><?php echo $comment["comment"] ?></div>
+                    <?php /* ?><a class="comment-reply" href="#">Reply</a><?php /*/ ?>
+                </div>
+            </div>
+        </div>
+    <?php endforeach ?>
+<?php endif ?>
+
+<?php
+    echo "<input type='hidden' name='__pagination__' data-resource_type='comments_news' data-resource_id='".$this->id_new."'>" ; 
+    echo $this->paginator;
+?>

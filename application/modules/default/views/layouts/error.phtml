@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="<?php echo DEFAULT_LANG_ABBR ?>" dir="ltr">
+    <head>
+        <?php 
+            echo $this->headTitle() ;
+        ?>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="robots" content="nofollow,noindex">
+
+        <?php 
+            echo $this->render("statics/error/header-scripts.phtml");
+            echo $this->render('statics/favicon.phtml'); 
+        ?>
+    </head>
+
+    <bod class="">
+        <?php 
+            echo $this->layout()->content;
+            echo $this->render("statics/error/inline-scripts.phtml");
+        ?>
+    </body>
+</html>

@@ -1,0 +1,86 @@
+<?php $id_item = Application_Class_Utils::idx($this->url, 'id', 0); ?>
+
+<!-- Main content -->
+<div class="content">
+    <h3 class="text-light">URL</h3>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+
+            <form method="post" action="" id="Nearby-form" class="form-horizontal form-to-validate">
+                <input type="hidden" value="<?php echo Application_Class_Utils::idx($this->url, 'id', ''); ?>" id="id" name="Url[id]">
+
+                <div class="row-fluid">
+                    <div class="span9">
+                        <div class="">
+                            <div class="box">
+                                <div class="tabbable"><!-- multilingual tabs -->
+                                    <?php Application_Class_Snippets::multilingualTabs(); ?>
+
+                                    <div class="box">
+                                        <div class="well tab-form-content">
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="resource"><span class="text-error">*</span>&nbsp;Resource:</label>
+                                                <div class="controls">
+                                                    <input type="text" name="Url[resource]" id="resource" class="span12 validate[required]" value="<?php echo $this->url["resource"] ?>">
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="action"><span class="text-error">*</span>&nbsp;Action:</label>
+                                                <div class="controls">
+                                                    <input type="text" name="Url[action]" id="action" class="span12 validate[required]" value="<?php echo $this->url["action"] ?>">
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="title"><span class="text-error">*</span> <?php echo $this->translate("Lien"); ?>:</label>
+                                                <div class="controls">
+                                                    <?php 
+                                                        $attributes = array(
+                                                            'classic' => array(
+                                                                'id'            => 'title'
+                                                                ,'autocomplete' => 'off'
+                                                            )
+                                                            ,'custom' => array(
+                                                                'class'        => 'validate[required] span12 multilingual'
+                                                                ,'module'      => "Url"
+                                                                ,'name'        => 'url'
+                                                                ,'data'        => $this->url
+                                                            )
+                                                        );
+                                                        Application_Class_Forms::textMultilingual($attributes); 
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </div>  
+                                </div><!-- end multilingual tabs -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="span3">
+                        <div class="well">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <h6><?php echo $this->translate("Publier"); ?></h6>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <button class="btn btn-primary" type="submit"><?php echo $this->translate("Enregistrer"); ?></button>
+                                <button type="button" class="btn btn-danger ml5" onclick="window.location.href = '/url'"><?php echo $this->translate("Retour"); ?></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb60"></div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+<!-- /main content -->

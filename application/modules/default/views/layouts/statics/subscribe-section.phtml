@@ -1,0 +1,24 @@
+<!--Subscribe section-->
+<section class="subscribe-section" style="background-image:url(<?php echo THEMES_DEFAULT_URL ?>images/background/3.jpg);">
+  <div class="auto-container">
+      <div class="row clearfix">
+          <!--Column-->
+          <div class="column col-md-7 col-md-12 col-xs-12">
+          <div class="text"><?php echo $this->translate("Grâce à notre courrier, vous restez toujours au courant de nos dernières nouvelles!") ?></div>
+                <?php /* ?><h2><?php echo $this->translate("Abonnez-vous à notre newsletter") ?></h2><?php */ ?>
+            </div>
+            <!--Column-->
+            <div class="column col-md-5 col-md-12 col-xs-12">
+              
+                <!--Subscribe form-->
+                <div class="subscribe-form">
+                  <?php 
+                    $newsletter_form = new Application_Form_Newsletter() ;
+                    echo $newsletter_form ;
+                  ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Subscribe section-->

@@ -1,0 +1,14 @@
+<?php 
+    echo $this->render('partial/phpjs.phtml'); 
+    echo $this->render("statics/header-scripts.phtml");
+    echo $this->headLink();
+    echo $this->headScript();
+?>
+
+<body style="overflow: hidden">
+    <?php 
+        echo $this->layout()->content;
+        echo $this->render("statics/inline-scripts.phtml");
+        echo $this->inlineScript();
+    ?>
+</body>

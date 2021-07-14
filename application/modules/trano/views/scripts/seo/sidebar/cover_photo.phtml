@@ -1,0 +1,19 @@
+<?php 
+$id_media = $this->id_media;
+$id_item  = $this->id_item;
+$module   = $this->module;
+$type     = $this->type;
+$cover_photo = Application_Model_Media::getCover($module, $id_item);
+if($cover_photo){
+?>
+
+	<a href="#browsemedia" data-id="<?php echo $id_item; ?>" data-id-media="<?php echo $id_media; ?>" data-module="<?php echo $module; ?>" data-type="<?php echo $type; ?>" class="lightboxmedia">
+		<img src="<?php echo $cover_photo; ?>">
+	</a>
+	<a style="cursor:pointer" data-id="<?php echo $id_item; ?>" data-id-media="<?php echo $id_media; ?>" data-module="<?php echo $module; ?>" data-type="<?php echo $type; ?>" class="deletecover">
+		<?php echo $this->translate("Supprimer définitivement"); ?>
+	</a>
+
+<?php 
+}
+?>

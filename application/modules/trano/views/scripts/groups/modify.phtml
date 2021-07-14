@@ -1,0 +1,151 @@
+<!-- Main content -->
+<?php 
+    $id_item = Application_Class_Utils::idx($this->group, 'id', 0); 
+?>
+
+<div class="content">
+    <h3 class="text-light">Groupes</h3>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+
+            <form method="post" action="" id="groups-form" class="form-horizontal form-to-validate">
+                <input type="hidden" value="<?php echo Application_Class_Utils::idx($this->group, 'id', ''); ?>" id="id" name="Groups[id]">
+                <input type="hidden" value="<?php echo Application_Class_Utils::idx($this->group, 'order_item', ''); ?>" id="id" name="Groups[old_order_item]">
+
+                <div class="row-fluid">
+                    <div class="span9">
+                        <div class="well">
+                            <div class="tabbable">
+                                <?php Application_Class_Snippets::multilingualTabs(); ?>
+
+                                <div class="well tab-form-content">
+                                    <div class="control-group">
+                                        <label class="control-label" for="title"><span class="text-error">*</span> Name:</label>
+                                        <div class="controls">
+                                            <?php 
+                                                $attributes = array(
+                                                    'classic' => array(
+                                                        'id'            => 'title'
+                                                        ,'autocomplete' => 'off'
+                                                    )
+                                                    ,'custom' => array(
+                                                        'class'        => 'validate[required] span12 multilingual'
+                                                        ,'module'      => 'Groups'
+                                                        ,'name'        => 'title'
+                                                        ,'data'        => $this->group
+                                                    )
+                                                );
+                                                Application_Class_Forms::textMultilingual($attributes); 
+                                            ?>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="id_module"><span class="text-error">*</span> Module:</label>
+                                        <div class="controls">
+                                            <select class="styled validate[required] span12" id="id_module" name="Groups[id_module]">
+                                                <?php 
+                                                    $modules = Application_Model_Module::getModules();
+                                                    $options = array(
+                                                        'default' => array(
+                                                            'value'  => ""
+                                                            ,'title' => "Choisir un module"
+                                                        )
+                                                        ,'selected' => (!empty($this->group['id'])) ? Application_Model_Module::getIdModuleByCategoryGroup($this->group['id']) : ''
+                                                        ,'options'  => $modules
+                                                    );
+                                                    Application_Class_Forms::options($options); 
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="order_item"> Order:</label>
+                                        <div class="controls">
+                                            <select class="styled span12" id="order_item" name="Groups[order_item]">
+                                                <?php 
+                                                    $groups = Application_Model_Group::getGroups();
+                                                    $options = array(
+                                                        'atfirst' => array(
+                                                            'value'  => 1
+                                                            ,'title' => "Au début"
+                                                        )
+                                                        ,'atend' => array(
+                                                            'title' => "A la fin"   
+                                                        )
+                                                        ,'optgrouplabel' => "Après"
+                                                        ,'options'       => $groups
+                                                        ,'tablename'     => TABLE_PREFIX.'categories_groups'
+                                                    );
+                                                    Application_Class_Forms::optionsOrderItem($options); 
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>    
+                                
+                            </div>
+                        </div> 
+                    </div>
+
+                    <div class="span3">
+                        <div class="well">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <h6><?php echo $this->translate("Publier"); ?></h6>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <button class="btn btn-primary" type="submit"><?php echo $this->translate("Enregistrer"); ?></button>
+                                <button type="button" class="btn btn-danger ml5" onclick="window.location.href='/groups'"><?php echo $this->translate("Retour"); ?></button>
+                            </div>
+                        </div>
+
+                        <?php if ($this->do == "edit"): ?>
+                            <div class="well mt-25px"> 
+                                <div class="navbar"> 
+                                    <div class="navbar-inner"> 
+                                        <h6><?php echo $this->translate("Image à la Une"); ?></h6> 
+                                    </div> 
+                                </div> 
+
+                                <div class="control-group">
+                                    <div class="cover">
+                                        <?php
+                                        $cover_photo = Application_Model_Media::getCover("groupes", $id_item); ?>
+
+                                        <?php if ($cover_photo): ?>
+                                            <div class="input-append" style="width:75%;margin-bottom:10px">
+                                                <input id="appendedInputButton" class="span12 input-block-level" type="text" value="<?php echo $cover_photo ?>" readonly>
+                                                <a class="btn" href="<?php echo $cover_photo ?>" target="_blank">Voir</a>
+                                            </div>
+                                        <?php endif ?>
+
+                                        <div class="clearfix"></div> 
+
+                                        <?php 
+                                            $id_media = Application_Model_Media::getCoverIdMedia("groupes", $id_item);
+                                            if ($cover_photo) {
+                                                echo $this->partial("medias/sidebar/cover_photo.phtml", array("id_media" => $id_media, "id_item" => $id_item, "type" => "cover", "module" => "groupes"));
+                                            } else {
+                                                echo $this->partial("medias/sidebar/add_cover.phtml", array("id_media" => 0, "id_item" => $id_item, "type" => "cover", "module" => "groupes"));
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif ?>
+
+                    </div>     
+                </div>
+
+                <div class="mb60"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /main content -->

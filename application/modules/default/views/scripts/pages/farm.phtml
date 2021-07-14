@@ -1,0 +1,10 @@
+<?php 
+  	echo $this->partial("_partials/page-title.phtml",array("page" => $this->translate("Filières paysannes"))) ;
+
+	if (!empty($this->contents)) {
+		foreach ($this->contents as $k => $data) {
+			$section = ($k == 0) ? "section-2.phtml" : "section-1.phtml" ;
+	      	echo $this->partial("pages/_partials/farm/".$section,array("content" => $data)) ;
+		}	
+	}
+?>

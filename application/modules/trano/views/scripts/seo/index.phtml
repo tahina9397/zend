@@ -1,0 +1,38 @@
+<!-- Main content -->
+<div class="content">
+    <h3 class="text-light">S.E.O</h3>
+
+    <div class="outer">
+        <div class=" align-cener">
+            <a href="javascript:void(0)" class="btn btn-primary" onclick="window.location.href='/seo/modifyseo/?do=add'" title="Ajouter"><i class="font-plus"></i>Ajouter</a>
+            <a href="javascript:void(0)" class="btn btn-danger massdelete" data-resource_type="seo" title="Supprimer"><i class="font-trash"></i>Supprimer</a>
+        </div>
+
+    </div>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+            <div class="well" >
+                <table class="table table-condensed" id="data-table">
+                    <thead>
+                        <tr>
+                            <th width="2%">&nbsp;</th>
+                            <th width="15%"><?php echo $this->translate("Page");?></th> <!-- id_seo -->
+                            <th><?php echo $this->translate("SEO-Titre");?></th>
+                            <th><?php echo $this->translate("SEO-Meta description");?></th>
+                            <th><?php echo $this->translate("SEO-Meta keyword");?></th>
+                            <th class="acenter" width="5%"><?php echo $this->translate("Actions");?></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="6" class="text-center">Chargement des données</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /main content -->

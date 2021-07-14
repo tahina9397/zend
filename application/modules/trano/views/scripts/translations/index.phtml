@@ -1,0 +1,53 @@
+<!-- Main content -->
+<div class="content">
+    <h3 class="text-light">Traductions</h3>
+
+    <div class="outer">
+        <div class=" align-cener">
+            <a href="javascript:void(0)" class="btn btn-primary ladda-button" onclick="window.location.href='/translations/modify/?do=add'" title="Ajouter" data-size="s"><i class="font-plus"></i>Ajouter</a>
+            <button class="btn btn-warning btn-ladda btn-ladda-spinner ladda-button scan-translation" data-spinner-color="#fff" data-style="slide-right" data-size="s" onclick="scanTranslations();" title="Scanner traductions"><i class="font-search"></i>Scanner les traductions</button>
+            <a href="javascript:void(0)" class="btn btn-danger ladda-button massdelete" data-resource_type="translations" title="Supprimer" data-size="s"><i class="font-trash"></i>Supprimer</a>
+        </div>
+
+    </div>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+            <div class="well" >
+                <table class="table table-condensed" id="data-table" data-id_language="<?php echo $this->id_language; ?>">
+                    <thead>
+                    	<tr>
+                    	    <th width="2%"><input type="checkbox" id="checkAll" name="checkAll" class="styled" /></th>
+                    	    <th>Key</th>
+                    	    <th>
+                    	    	Traduction en
+                    	    	<?php 
+                    	    		switch ($this->id_language) {
+                    	    			case 1:
+                    	    				echo $this->translate("Français");
+                    	    				break;
+                    	    			case 2:
+                    	    				echo $this->translate("Anglais");
+                    	    				break;
+                    	    			
+                    	    			default:
+                    	    				break;
+                    	    		}
+                    	    	?>
+                    	    </th>
+                    	    <th width="15%">Update time</th>
+                    	    <th width="10%" class="acenter">Actions</th>
+                    	</tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="text-center">Chargement des données</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /main content -->

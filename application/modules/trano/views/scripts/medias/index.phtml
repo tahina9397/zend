@@ -1,0 +1,61 @@
+<!-- Main content -->
+<style type="text/css">
+    #dropzone-example { background: url(<?php echo THEMES_TRANO_URL ?>/images/elements/uploader/drag.png) no-repeat 50%;background-color: #fff;}
+</style>
+
+<div class="content">
+    <h3 class="text-light">Médias</h3>
+
+    <div class="outer mt-25px">
+        <div class="panel">
+            <div class="notice outer">
+                <div class="note note-danger">
+                    <strong>
+                        <?php 
+                            echo str_replace("#size#", "<strong>".MAX_SIZE."".DEFAULT_UNIT_LIBELLE."</strong>", "Une photo ne doit pas dépasser #size# ");
+                            echo "<br>";
+                            echo str_replace("#size#", "<strong>JPG, JPEG, PNG</strong>", "Les fichiers autorisés sont :  #size# ") ;
+                            echo "<br>";
+                        ?>
+                    </strong>
+                </div>
+            </div>
+
+            <form action="<?php echo $this->baseUrl() ?>/medias/multipleupload/?folder=medias" class="dropzone dz-square" id="dropzone-example" style="width:100%;">
+                <div class="dz-message" data-dz-message style="margin-top: 38px">
+                </div>
+            </form>
+
+            <div class="outer mt-25px">
+                <div class=" align-cener">
+                    <a href="javascript:void(0)" class="btn btn-danger massdelete" data-resource_type="medias" title="Supprimer"><i class="font-trash"></i>Supprimer</a>
+                </div>
+
+            </div>
+
+            <div class="well mt-25px" >
+                <table class="table table-condensed" id="data-table">
+                    <thead>
+                        <tr>
+                            <th width="2%"><input type="checkbox" id="checkAll" name="checkAll" class="styled" /></th>
+                            <th style="width:60px"><?php echo $this->translate("Image"); ?></th>
+                            <th><?php echo $this->translate("Titre"); ?></th>
+                            <th width="15%"><?php echo $this->translate("Auteur"); ?></th>
+                            <th width="15%"><?php echo $this->translate("Date"); ?></th>
+                            <th width="25%"><?php echo $this->translate("Fichier"); ?></th>
+                            <th width="25%"><?php echo $this->translate("Afficher dans la galérie"); ?></th>
+                            <th class="acenter" width="5%"><?php echo $this->translate("Actions"); ?></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td colspan="8" class="text-center">Chargement des données</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /main content -->

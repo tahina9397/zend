@@ -1,0 +1,32 @@
+<script type="text/javascript">
+	var tabExtension ;
+
+	$(document).on("change","input#upload-file",function(){
+		var current = $(this) ,
+		accept = current.attr("accept") ,
+		fileElement = current.val() ,
+		fileExtension  = fileElement.substr((fileElement.lastIndexOf('.') +1)) ;
+
+		var resource_type = current.attr("data-resource_type") ;
+
+		switch(accept){
+			case 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.csv' :
+				tabExtension = ["xls","xlsx","csv"] ;
+				break ;
+		}
+
+		if ($(this)[0].files[0].size > JS_MAX_SIZE) {
+            $.growl.error({ title:"", message: JS_MAX_SIZE_ALERT});
+			// $("input[type='hidden'][name='hidden_file_"+resource_type+"']").val("") ;
+			return false;
+		}
+		else if($.inArray(fileExtension.toLowerCase(),tabExtension) === -1){
+            $.growl.error({ title:"", message: JS_UNSUPPORTED_FILE});
+			// $("input[type='hidden'][name='hidden_file_"+resource_type+"']").val("") ;
+			return false;
+		}
+		// else{
+		// 	$("input[type='hidden'][name='hidden_file_"+resource_type+"']").val(1) ;
+		// }
+	}); 
+</script>

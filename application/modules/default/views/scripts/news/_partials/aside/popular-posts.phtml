@@ -1,0 +1,26 @@
+<?php 
+    $similar_news = Application_Model_Global::pselect(TABLE_PREFIX."pages","id","is_similar_news = 1 AND hidden = 0") ;
+?>
+
+<!-- Popular Posts -->
+<div class="sidebar-widget popular-posts">
+    <div class="sidebar-title"><h2><?php echo $this->translate("Actualités similaires") ?></h2></div>
+
+    <?php if (!empty($similar_news)): ?>
+        <?php foreach ($similar_news as $value): 
+            $new = Application_Model_Page::getPageByPageId($value["id"]) ;
+
+            $tab_params["id_language"] = DEFAULT_LANG_ID ;
+            $tab_params["resource"] = "news" ;
+            $tab_params["action"] = "fiche" ;
+
+            $getUrl = Application_Class_Url::getMultilingualUrl($tab_params) ;
+        ?>
+            <article class="post">
+                <figure class="post-thumb" style="background: url(<?php echo $new["cover"]["url"] ?>);background-size: cover;min-height: 80px;max-height: 80px"><a href="<?php echo str_replace("#permalink#", $new["seo_permalink"], $getUrl) ?>"></a></figure>
+                <div class="text"><a href="<?php echo str_replace("#permalink#", $new["seo_permalink"], $getUrl) ?>"><?php echo $new["title"] ?></a></div>
+                <div class="post-info"><?php echo str_replace("#date_publication#", Application_Class_Date::formatfromMysql($new["create_time"]), $this->translate("Publié le : #date_publication# ")) ?></div>
+            </article>
+        <?php endforeach ?>
+    <?php endif ?>
+</div>

@@ -1,0 +1,7 @@
+<?php echo $this->partial("_partials/page-title.phtml",array("page" => $this->translate("Contact"))) ?>
+
+<?php 
+    // echo $this->partial("contact/_partials/map-section.phtml") ;
+    echo $this->render("contact/_partials/contact-section.phtml",array("contact_form" => $contact_form)) ;
+    // echo $this->partial("contact/_partials/subscribe-section.phtml") ;
+?>

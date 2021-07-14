@@ -1,0 +1,107 @@
+<?php $error_file = $this->translate("Fichier non autorisé ou trop volumineux"); ?>
+
+<script> 
+var total_uploads = 0 ,id ;
+
+$('<?php echo $this->target_element;?>').fileupload();
+$('<?php echo $this->target_element;?>').fileupload('option', {
+    url: '<?php echo $this->url;?>',
+    dataType: 'json',
+    formData: {
+        form_unique_key: '<?php echo $this->random_string;?>'
+        ,article_id : $('input[type=hidden]#article_id').val()
+        ,type : '<?php echo $this->type;?>'
+    },
+    maxFileSize: php_maxFileUploadSize,
+    maxNumberOfFiles: php_maxImagesPerPost,
+    autoUpload: true,
+    acceptFileTypes: <?php echo $this->accepted_files ?>
+}).bind('fileuploadprocessalways', function (e, data) {
+
+    if (typeof(data.context) === 'undefined') return false;
+
+    var index = data.index,
+        file = data.files[index],
+        node = $(data.context.children()[index]);
+    
+    if (file.error) {
+        $.growl.error({ title:"", message: "<?php echo $error_file ?>" });
+    }else{
+        total_uploads++;
+    }
+}).bind('fileuploaddone', function (e, data) {
+
+    if (data.formData.type == "documents") {
+        id = "#upAttachmentsFiles" ;
+    }
+    else if(data.formData.type == "images"){
+        id = "#upAttachmentsImage" ;
+    }
+    else if(data.formData.type == "archives"){
+        id = "#upAttachmentsArchives" ;
+    }
+    else{
+        id = "#upAttachmentsAudio" ;
+    }
+
+    $("form"+id+" input[type=button]").attr("value","Ajouter").attr("disabled",false) ;
+
+    if (typeof(data.context) === 'undefined') return false;
+    
+    if (data.result.status == 1){
+        // if (total_uploads >= php_maxImagesPerPost){
+        //     $('.btn-file').remove();
+        //     $.growl.error({ title:"", message: "Nombre maximum de téléchargement atteint" });
+        //     return;
+        // }
+        
+        $.each(data.files, function (index, file) {
+            $('<?php echo $this->target_element;?>').append('<input type="hidden" name="myfieldname" value="myvalue" />');
+            $(data.context.children()[index]).find('.progress-bar').css('width', '100%');
+        });
+
+        show_uploaded_files(data.result.last_file_id) ;
+
+    }else{
+        $(data.context.children()[0]).html(data.result.error);
+    }  
+}).bind('fileuploadadd', function (e, data) {
+
+    $('#files').show();
+    
+    // if (total_uploads >= php_maxImagesPerPost){
+    //     return;
+    // }
+
+    data.context = $('<div/>').appendTo('#files');
+    $.each(data.files, function (index, file) {
+        var node = $('<div/>')
+            .append($('<span/>').text(file.name))
+            .append('<div class="progress progress-xs progress-striped"><div class="progress-bar progress-bar-success"></div><div/>');
+        node.appendTo(data.context);
+    });
+}).bind('fileuploadprogress', function (e, data) {
+    if (data.formData.type == "documents") {
+        id = "#upAttachmentsFiles" ;
+    }
+    else if(data.formData.type == "images"){
+        id = "#upAttachmentsImage" ;
+    }
+    else if(data.formData.type == "archives"){
+        id = "#upAttachmentsArchives" ;
+    }
+    else{
+        id = "#upAttachmentsAudio" ;
+    }
+
+    $("form"+id+" input[type=button]").attr("value","Envoie en cours  ...").attr("disabled",true) ;
+
+    console.log("progress");
+    if (typeof(data.context) === 'undefined') return false;
+
+    $.each(data.files, function (index, file) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $(data.context.children()[index]).find('.progress-bar').css('width', progress + '%');
+    });
+});
+</script>

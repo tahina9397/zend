@@ -1,0 +1,16 @@
+<!--Clients Section-->
+<section class="clients-section">
+  <div class="auto-container">
+      <!--Sec Title-->
+        <div class="sec-title centered aos-init aos-animate" data-aos="fade-up" data-aos-duration="700">
+            <h2><?php echo $this->translate("Nos partenaires") ?></h2>
+        </div>
+      <!--Sponsors Carousel-->
+        <ul class="sponsors-carousel owl-carousel owl-theme">
+            <?php foreach ($this->partenaires as $partenaire): ?>
+              <li class="slide-item"><figure class="image-box"><a href="javascript:void(0)"><img src="<?php echo $partenaire["cover"]["url"] ?>" alt="<?php echo $this->partenaire["title"] ?>"></a></figure></li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+</section>
+<!--End Clients Section-->

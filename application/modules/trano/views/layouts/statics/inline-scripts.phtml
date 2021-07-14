@@ -1,0 +1,96 @@
+<?php 
+	$request = Zend_Controller_Front::getInstance()->getRequest();
+	$resource = $request->getControllerName();
+	$action  = $request->getActionName();
+
+    $version = Zend_Registry::get('version');
+?>
+
+<?php if ($resource != "medias" || $action != "add"): ?>
+	<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/jquery.min.js"></script>
+<?php endif ?>
+
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/jquery_ui_custom.js"></script>
+
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/charts/excanvas.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/charts/jquery.flot.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/charts/jquery.flot.resize.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/charts/jquery.sparkline.min.js"></script>
+
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.tagsinput.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.inputlimiter.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.maskedinput.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.autosize.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.ibutton.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.dualListBox.js"></script>
+<!-- <script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.validate.js"></script> -->
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.uniform.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.select2.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.cleditor.js"></script>
+
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/uploader/plupload.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/uploader/plupload.html4.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/uploader/plupload.html5.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/uploader/jquery.plupload.queue.js"></script>
+
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/wizard/jquery.form.wizard.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/wizard/jquery.form.js"></script>
+
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/ui/jquery.collapsible.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/ui/jquery.timepicker.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/ui/jquery.jgrowl.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/ui/jquery.pie.chart.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/ui/jquery.fullcalendar.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/ui/jquery.elfinder.js"></script>
+
+<?php /* ?>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/ui/jquery.fancybox.js"></script>
+<?php */ ?>
+
+<script type="text/javascript" src="<?php echo PLUGINS_URL ?>fancybox/jquery.fancybox.min.js"></script>
+
+<?php /* ?><script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/tables/jquery.dataTables.min.js"></script><?php */ ?>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/tables/datatables.min.js"></script>
+
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/bootstrap/bootstrap-bootbox.min.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/bootstrap/bootstrap-progressbar.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/bootstrap/bootstrap-colorpicker.js"></script>
+
+<!-- validation -->
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.validation.js"></script>
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/plugins/forms/jquery.validationEngine-en.js"></script>
+
+<script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/functions/custom.js?v=<?php echo $version ?>"></script>
+<?php /* ?><script type="text/javascript" src="<?php echo THEMES_TRANO_URL ?>js/charts/chart.js"></script><?php */ ?>
+
+
+<!-- custom -->
+<script type='text/javascript' src='<?php echo PLUGINS_URL ; ?>autosize.min.js'></script>
+
+<script type='text/javascript' src='<?php echo PLUGINS_URL ; ?>inputmask/dist/min/jquery.inputmask.bundle.min.js?v=<?php echo $version?>'></script>
+
+<script type="text/javascript" src="<?php echo PLUGINS_URL ; ?>ladda/js/spin.min.js"></script>
+<script type="text/javascript" src="<?php echo PLUGINS_URL ; ?>ladda/js/ladda.min.js"></script>
+
+<script type='text/javascript' src='<?php echo PLUGINS_URL ; ?>jquery.growl/js/jquery.growl.js'></script>
+<!-- datepicker -->
+<script type='text/javascript' src='<?php echo PLUGINS_URL ; ?>bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js?v=<?php echo $version?>'></script>
+<script type='text/javascript' src='<?php echo PLUGINS_URL ; ?>bootstrap-datepicker/dist/locales/bootstrap-datepicker.fr-CH.min.js?v=<?php echo $version?>'></script>
+
+<script type='text/javascript' src='<?php echo PLUGINS_URL ; ?>magnific-popup/dist/jquery.magnific-popup.min.js'></script>
+
+<?php /* ?><script type='text/javascript' src='<?php echo PLUGINS_URL ; ?>jquery.matchHeight.js'></script><?php */ ?>
+<script type='text/javascript' src='<?php echo PLUGINS_URL ; ?>jquery.matchHeight-min.js'></script>
+
+<!-- sweet alert -->
+<?php /* ?><script type='text/javascript' src="<?php echo PLUGINS_URL; ?>swal/sweet_alert.min.js"></script><?php */ ?>
+<script type='text/javascript' src="<?php echo PLUGINS_URL; ?>swal2/sweetalert2.min.js"></script>
+
+<!-- toastr -->
+<script type='text/javascript' src="<?php echo PLUGINS_URL; ?>toastr/2.1.3/toastr.min.js"></script>
+
+<script src="<?php echo THEMES_TRANO_URL?>js/app.js?v=<?php echo $version?>"></script>
+<?php /* ?>
+<script src="<?php echo THEMES_TRANO_URL?>js/main.js?v=<?php echo $version?>"></script>
+<?php */ ?>

@@ -1,0 +1,46 @@
+<?php
+$get = Application_Model_Page::getPageByCatId(11);
+$abouts = $get["content"];
+
+$about_url = Application_Class_Url::getMultilingualUrl(array("id_language" => DEFAULT_LANG_ID, "resource" => "pages", "action" => "about"));
+?>
+
+<section class="environment-section">
+  <div class="auto-container">
+    <div class="row clearfix">
+      <!--Content Column-->
+      <div class="content-column col-md-6 col-sm-12 col-xs-12">
+        <div class="content-inner">
+          <!--Sec Title-->
+          <div class="sec-title aos-init aos-animate" data-aos="fade-right" data-aos-duration="700">
+            <?php /* ?><div class="title">Let’s Promote the Ecology</div><?php */ ?>
+            <h2><span><?php echo Zend_registry::get("option")->site_name ?>&nbsp;-&nbsp;</span><?php echo $this->translate("Huiles essentielles de Madagascar") ?></h2>
+          </div>
+          <div class="aos-init aos-animate" data-aos="fade-right" data-aos-duration="700">
+            <div class="bold-text"><?php echo $get["category_description"] ?></div>
+            <div class="text"><?php echo $get["category_text"] ?></div>
+            <a href="<?php echo $about_url ?>" class="theme-btn btn-style-four"><?php echo $this->translate("Découvrez notre équipe") ?></a>
+          </div>
+        </div>
+      </div>
+      <!--Services Column-->
+      <div class="services-column col-md-6 col-sm-12 col-xs-12">
+
+        <?php if (!empty($abouts)) : ?>
+          <?php foreach ($abouts as $key => $about) : ?>
+            <!--Services Block Two-->
+            <div class="services-block-two aos-init aos-animate" data-aos="fade-left" data-aos-duration="700">
+              <div class="inner-box">
+                <div class="icon-box">
+                  <span class="icon <?php echo $about["icon"] ?>"></span>
+                </div>
+                <h3><a href="<?php echo $this->baseUrl() . "/" . $about["seo_permalink"] ?>"><?php echo $about["title"] ?></a></h3>
+                <div class="text"><?php echo $about["text"] ?></div>
+              </div>
+            </div>
+          <?php endforeach ?>
+        <?php endif ?>
+      </div>
+    </div>
+  </div>
+</section>

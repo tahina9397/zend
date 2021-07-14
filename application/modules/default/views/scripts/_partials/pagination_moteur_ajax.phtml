@@ -1,0 +1,70 @@
+<style type="text/css">
+  .disabled{cursor: not-allowed;}
+</style>
+
+<?php if ($this->pageCount): ?>
+<div class="styled-pagination">
+    <ul class="clearfix">
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+  <li><a href="javascript:void(0)" onclick="getProducts('<?php echo $this->previous?>')"><span class="icon flaticon-left-arrow-3"></span></a></li>
+<?php else: ?>
+  <li><a href="javascript:void(0)" class="disabled"><span class="icon flaticon-left-arrow-3"></span></a></li>
+<?php endif; ?>
+ 
+<!-- Numbered page links -->
+<?php 
+foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+    <li><a href="javascript:void(0)" onclick="getProducts('<?php echo $page?>')" ><?php echo $page; ?></a></li>
+  <?php else: ?>
+    <li><a href="javascript:void(0)" class="active"><?php echo $page; ?></a></li>
+  <?php endif; ?>
+<?php endforeach; ?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+  <li><a href="javascript:void(0)" onclick="getProducts('<?php echo $this->next?>')"><span class="icon flaticon-right-arrow-4"></span></a></li>
+<?php else: ?>
+  <li><a href="javascript:void(0)" class="disabled"><span class="icon flaticon-right-arrow-4"></span></a></li>
+<?php endif; ?>
+    </ul>
+</div>
+<?php endif; ?>
+
+<?php /* ?>
+<style type="text/css">
+  .disabled{cursor: not-allowed;}
+</style>
+
+<?php if ($this->pageCount): ?>
+<div class="styled-pagination">
+    <ul class="clearfix">
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+  <li><a href="javascript:void(0)" class="__pagination__" data-page="<?php echo $this->previous ?>" data-resource_type="<?php echo $this->resource_type ?>"><span class="icon flaticon-left-arrow-3"></span></a></li>
+<?php else: ?>
+  <li><a href="javascript:void(0)" class="disabled"><span class="icon flaticon-left-arrow-3"></span></a></li>
+<?php endif; ?>
+ 
+<!-- Numbered page links -->
+<?php 
+foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+    <li><a href="javascript:void(0)" class="__pagination__" data-page="<?php echo $page ?>" data-resource_type="<?php echo $this->resource_type ?>"><?php echo $page; ?></a></li>
+  <?php else: ?>
+    <li><a href="javascript:void(0)" class="active"><?php echo $page; ?></a></li>
+  <?php endif; ?>
+<?php endforeach; ?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+  <li><a href="javascript:void(0)" class="__pagination__" data-page="<?php echo $this->nexr ?>" data-resource_type="<?php echo $this->resource_type ?>"><span class="icon flaticon-right-arrow-4"></span></a></li>
+<?php else: ?>
+  <li><a href="javascript:void(0)" class="disabled"><span class="icon flaticon-right-arrow-4"></span></a></li>
+<?php endif; ?>
+    </ul>
+</div>
+<?php endif; ?>
+<?php */ ?>
+

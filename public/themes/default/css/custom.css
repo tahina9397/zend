@@ -1,0 +1,56 @@
+div.form-errors > ul {
+    padding-left: 0px ;
+}
+
+div.form-errors > ul li{
+	color: #ff4e4e  ;
+    list-style: none ;
+    font-size: .93em;
+}
+
+form#Newsletter div.form-errors > ul li{
+    color: #192e43  ;
+}
+
+/*oils*/
+.left-50{left : 50% !important;}
+
+/*footer*/
+.widgets-section{padding-bottom: 25px !important}
+.main-footer{background: #1d1d1d !important}
+
+/*contact button*/
+form#Contact .ladda-button[data-size=xs]
+,form#Comments .ladda-button[data-size=xs] {
+    position: relative;
+    line-height: 24px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 4px;
+    background: #82ae14;
+    padding: 13px 37px 11px;
+    border: 2px solid #82ae14;
+    text-transform: uppercase;
+}
+
+form#Contact .ladda-button[data-size=xs]:hover
+,form#Comments .ladda-button[data-size=xs]:hover {
+    background: none;
+    color: #82ae14;
+    border: 2px solid #82ae14;
+}
+
+form#Contact .ladda-button[data-size=xs] .ladda-label
+,form#Comments .ladda-button[data-size=xs] .ladda-label
+,form#Newsletter .ladda-button[data-size=xs] .ladda-label {
+    font-size: inherit;
+}
+
+
+/*general*/
+.text-white{color: #fff !important}
+.hover-underline:hover{text-decoration: underline;}
+.cpointer{cursor: pointer}
+#footer-widgets .widget.widget.widget_information ul.style-2 .hl {width: 30% !important}
+#footer-widgets .widget.widget.widget_information ul.style-2 .text {width: 70% !important}

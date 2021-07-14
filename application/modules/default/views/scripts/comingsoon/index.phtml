@@ -1,0 +1,13 @@
+<?php 
+    $option = Zend_Registry::get("option") ;
+?>
+
+<div id="article">
+<h1><?php echo $this->translate("Site en cours de maintenance") ?></h1>
+<div>
+<p>
+    <?php echo str_replace("#company_email#", "<a href='mailto:".$option->company_email."'>".$option->company_email."</a>", $this->translate("Nous nous excusons pour le désagrément occasionné, mais nous effectuons des travaux de maintenance. Vous pouvez toujours nous contacter à #company_email#. Nous serons de retour bientôt!")) ?>
+</p>
+<p>— <?php echo $option->site_name ?></p>
+</div>
+</div>
